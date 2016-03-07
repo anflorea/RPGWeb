@@ -34,22 +34,31 @@ public class AwesomeController {
         return "register";
     }
 
-    @RequestMapping(value = "/create", method = RequestMethod.POST)
-    public String sendUser(@ModelAttribute(value = "user") @Valid UserDTO user, BindingResult bindingResult) {
+    @RequestMapping(value = "/register", method = RequestMethod.POST)
+    public String sendRegister(@ModelAttribute(value = "user") @Valid UserDTO user, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return "create";
+            return "register";
         }
-        User userModel =awesomeService.registerUser(user);
+        User userModel = awesomeService.registerUser(user);
         return "redirect:/";
     }
 
-    @RequestMapping(value = "/create", method = RequestMethod.GET)
-    public String createUserForm(Model model) {
-        UserDTO user = new UserDTO();
-        user.setName("Gigi");
-        user.setEmail("gigi@example.com");
-        model.addAttribute("user",user);
-        model.addAttribute("text","Hello world!");
-        return "create";
-    }
+//    @RequestMapping(value = "/create", method = RequestMethod.POST)
+//    public String sendUser(@ModelAttribute(value = "user") @Valid UserDTO user, BindingResult bindingResult) {
+//        if (bindingResult.hasErrors()) {
+//            return "create";
+//        }
+//        User userModel =awesomeService.registerUser(user);
+//        return "redirect:/";
+//    }
+//
+//    @RequestMapping(value = "/create", method = RequestMethod.GET)
+//    public String createUserForm(Model model) {
+//        UserDTO user = new UserDTO();
+//        user.setName("Gigi");
+//        user.setEmail("gigi@example.com");
+//        model.addAttribute("user",user);
+//        model.addAttribute("text","Hello world!");
+//        return "create";
+//    }
 }

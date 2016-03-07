@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import ro.academyplus.dto.UserDTO;
 import ro.academyplus.model.User;
 import ro.academyplus.repository.UserRepository;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 /**
  * Created by agheboianu on 03.03.2016.
@@ -24,7 +25,9 @@ public class AwesomeService {
         User user = new User();
         user.setEmail(userDTO.getEmail());
         user.setName(userDTO.getName());
-        user.setPassword(userDTO.getPassword());
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        String hashedPassword = passwordEncoder.encode(userDTO.getPassword());
+        user.setPassword(hashedPassword);
         return userRepository.save(user);
     }
 }

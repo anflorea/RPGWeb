@@ -7,4 +7,6 @@ import ro.academyplus.model.User;
  * Created by agheboianu on 04.03.2016.
  */
 public interface UserRepository extends JpaRepository<User,Long>{
+
+    User findOneByEmail(String email);
 }
