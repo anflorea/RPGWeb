@@ -4,11 +4,11 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous" />
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous" />
-    <link rel="stylesheet" type="text/css" href="style.css" />
-	<link rel="shortcut icon" href="icon.png" />
-	<link rel="icon" href="icon.png" />
-	<link rel="bookmark icon" href="icon.png" />
-	<script type="text/javascript" src="script.js" ></script>
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+	<link rel="shortcut icon" href="img/icon.png" />
+	<link rel="icon" href="img/icon.png" />
+	<link rel="bookmark icon" href="img/icon.png" />
+	<script type="text/javascript" src="js/script.js" ></script>
 	<title>Awesome Game</title>
 </head>
 
@@ -17,8 +17,9 @@
 	<div class="menu-wrap" id="headWrap">
 		<nav class="menu">
 			<a href="/">
-				<img src="logo-academy.png" style="height:100%; margin-left:50px; padding-top:5px; float:left;"/>
+				<img src="img/logo-academy.png" style="height:100%; margin-left:50px; padding-top:5px; float:left;"/>
 			</a>
+			<label th:if="${failed}" style="color: red;">Login failed</label>
 			<ul class="clearfix">
 				<li style = "float: right; margin-right: 120px;"><a href="javascript: showLoginPane(true)" style = "line-height: 27px; font-size: 14px;">Login</a></li>
 				<!--<li>-->
@@ -42,17 +43,17 @@
 				<a href = "javascript: showLoginPane(false)"> &#10006; </a>
 			</div>
 
-			<form class="form-horizontal">
+			<form class="form-horizontal" action="/login" method="post">
 				<div class="form-group">
-					<label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+					<label for="inputEmail" class="col-sm-2 control-label">Email</label>
 					<div class="col-sm-10">
-						<input type="email" class="form-control" id="inputEmail3" placeholder="Email" />
+						<input type="email" class="form-control" id="inputEmail" placeholder="Email" name="username" />
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="inputPassword3" class="col-sm-2 control-label">Password</label>
+					<label for="inputPassword" class="col-sm-2 control-label">Password</label>
 					<div class="col-sm-10">
-						<input type="password" class="form-control" id="inputPassword3" placeholder="Password" />
+						<input type="password" class="form-control" id="inputPassword" placeholder="Password" name="password" />
 					</div>
 				</div>
 				<div class="form-group">
@@ -68,7 +69,7 @@
 
 	<div id="divutz_homepage">
 		<div style="text-align: center;"><h1>Awesome RPG Game</h1></div> <br />
-		<img src="characters.png" style="width: 100%; height: auto; cursor: auto; margin-top: 20px;"/>
+		<img src="img/characters.png" style="width: 100%; height: auto; cursor: auto; margin-top: 20px;"/>
 
 
 	</div>

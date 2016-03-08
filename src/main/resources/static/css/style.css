@@ -41,7 +41,7 @@ form ul li input,
 }
 
 body {
-	background-image:url(background.png);
+	background-image:url(/img/background.png);
 	overflow-x:hidden;
 	background-attachment: fixed; 
 	font-family: 'Raleway', sans-serif !important;
