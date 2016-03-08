@@ -12,19 +12,16 @@
 	<title>Awesome Game</title>
 </head>
 
-<body onload="showLoginPane('nothing')">
+<body>
 
 	<div class="menu-wrap" id="headWrap">
 		<nav class="menu">
 			<a href="/">
 				<img src="img/logo-academy.png" style="height:100%; margin-left:50px; padding-top:5px; float:left;"/>
 			</a>
+			<label th:if="${failed}" style="color: red;">Login failed</label>
 			<ul class="clearfix">
-				<li style = "float: right; margin-right: 120px;">
-					<a href="javascript: showLoginPane(true)" th:class="${isAuth} ? hiddenClass : fuckingClass">Login</a>
-					<a href="/logout" th:class="${isAuth} ? fuckingClass : hiddenClass">Logout</a>
-
-				</li>
+				<li style = "float: right; margin-right: 120px;"><a href="javascript: showLoginPane(true)" style = "line-height: 27px; font-size: 14px;">Login</a></li>
 				<!--<li>-->
 					<!--<a href="facebook_general.html">Facebook <span class="arrow">&#9660;</span> </a> -->
 					<!--<ul class="sub-menu">-->
@@ -59,7 +56,6 @@
 						<input type="password" class="form-control" id="inputPassword" placeholder="Password" name="password" />
 					</div>
 				</div>
-				<label th:if="${failed}" style="color: red; float: right;">Login failed</label>
 				<div class="form-group">
 					<div class="col-sm-offset-2 col-sm-10">
 						<button type="submit" class="btn btn-default">Sign in</button>
@@ -71,9 +67,8 @@
 		</div>
 	</div>
 
-	<div id="divutz_homepage">
-		<div style="text-align: center;"><h1>Awesome RPG Game</h1></div> <br />
-		<img src="img/characters.png" style="width: 100%; height: auto; cursor: auto; margin-top: 20px;"/>
+	<div id="divutz">
+		<div style="text-align: center;"><h2>Select your Hero</h2></div> <br />
 
 
 	</div>

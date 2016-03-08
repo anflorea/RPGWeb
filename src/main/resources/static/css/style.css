@@ -6,6 +6,15 @@
 	margin: 40px;
 }
 
+.fuckingClass {
+    line-height: 27px;
+    font-size: 14px;
+}
+
+.hiddenClass {
+    display: none;
+}
+
 .hrefTable {
 	position: absolute;
 	top: 135px;

@@ -23,7 +23,13 @@ public class AwesomeController {
     AwesomeService awesomeService;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String getIndex() {
+    public String getIndex(@RequestParam(value = "failed", required = false, defaultValue = "") String failed, Model model) {
+        if (!failed.isEmpty()) {
+            model.addAttribute("failed", true);
+            model.addAttribute("isAuth", false);
+        }
+        else
+            model.addAttribute("isAuth", true);
         return "index";
     }
 

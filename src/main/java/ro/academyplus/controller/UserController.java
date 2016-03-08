@@ -3,6 +3,7 @@ package ro.academyplus.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 /**
@@ -16,6 +17,11 @@ public class UserController {
         if (!failed.isEmpty()) {
             model.addAttribute("failed", true);
         }
-        return "login";
+        return "redirect:index";
+    }
+
+    @RequestMapping(value = "/selectHero", method = RequestMethod.GET)
+    public String selectHero() {
+        return "selectHero";
     }
 }
