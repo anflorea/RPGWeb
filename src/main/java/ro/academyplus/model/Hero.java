@@ -2,6 +2,7 @@ package ro.academyplus.model;
 
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * Created by Flo on 08-Mar-16.
@@ -9,7 +10,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "HEROES")
-public class Hero {
+public class Hero implements Serializable{
     private String name;
     private HeroType type;
     private int health;
@@ -19,6 +20,11 @@ public class Hero {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     private long userId;
+
+    @Override
+    public String toString() {
+        return ("ID: " + this.id + ", Name: " + this.name + ", type: " + this.type.toString());
+    }
 
     public String getName() {
         return name;
