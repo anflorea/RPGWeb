@@ -1,5 +1,7 @@
 package ro.academyplus.controller;
 
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,7 +23,13 @@ public class UserController {
     }
 
     @RequestMapping(value = "/selectHero", method = RequestMethod.GET)
-    public String selectHero() {
+    public String selectHero(Model model) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
+        if (auth.getName().equalsIgnoreCase("anonymousUser"))
+            model.addAttribute("isAuth", false);
+        else
+            model.addAttribute("isAuth", true);
         return "selectHero";
     }
 }

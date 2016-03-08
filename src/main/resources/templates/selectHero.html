@@ -19,9 +19,11 @@
 			<a href="/">
 				<img src="img/logo-academy.png" style="height:100%; margin-left:50px; padding-top:5px; float:left;"/>
 			</a>
-			<label th:if="${failed}" style="color: red;">Login failed</label>
 			<ul class="clearfix">
-				<li style = "float: right; margin-right: 120px;"><a href="javascript: showLoginPane(true)" style = "line-height: 27px; font-size: 14px;">Login</a></li>
+				<li style = "float: right; margin-right: 120px;">
+					<a href="javascript: showLoginPane(true)" th:class="${isAuth} ? 'hiddenClass' : 'fuckingClass'">Login</a>
+					<a href="/logout" th:class="${isAuth} ? 'fuckingClass' : 'hiddenClass'">Logout</a>
+				</li>
 				<!--<li>-->
 					<!--<a href="facebook_general.html">Facebook <span class="arrow">&#9660;</span> </a> -->
 					<!--<ul class="sub-menu">-->

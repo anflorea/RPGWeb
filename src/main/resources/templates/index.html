@@ -21,9 +21,8 @@
 			</a>
 			<ul class="clearfix">
 				<li style = "float: right; margin-right: 120px;">
-					<a href="javascript: showLoginPane(true)" th:class="${isAuth} ? hiddenClass : fuckingClass">Login</a>
-					<a href="/logout" th:class="${isAuth} ? fuckingClass : hiddenClass">Logout</a>
-
+					<a href="javascript: showLoginPane(true)" th:class="${isAuth} ? 'hiddenClass' : 'fuckingClass'">Login</a>
+					<a href="/logout" th:class="${isAuth} ? 'fuckingClass' : 'hiddenClass'">Logout</a>
 				</li>
 				<!--<li>-->
 					<!--<a href="facebook_general.html">Facebook <span class="arrow">&#9660;</span> </a> -->

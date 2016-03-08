@@ -2,6 +2,8 @@ package ro.academyplus.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.StringArrayPropertyEditor;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -24,10 +26,13 @@ public class AwesomeController {
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String getIndex(@RequestParam(value = "failed", required = false, defaultValue = "") String failed, Model model) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
         if (!failed.isEmpty()) {
             model.addAttribute("failed", true);
-            model.addAttribute("isAuth", false);
         }
+        if (auth.getName().equalsIgnoreCase("anonymousUser"))
+            model.addAttribute("isAuth", false);
         else
             model.addAttribute("isAuth", true);
         return "index";

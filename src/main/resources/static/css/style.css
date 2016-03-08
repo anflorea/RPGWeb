@@ -12,7 +12,7 @@
 }
 
 .hiddenClass {
-    display: none;
+    display: none !important;
 }
 
 .hrefTable {
