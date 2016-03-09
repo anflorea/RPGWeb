@@ -44,3 +44,35 @@ function renameHeroFunction() {
     }
     awsmInputName.value = newName;
 }
+
+var f = {};
+
+f.disableButtons = function () {
+    $('#selectHero').change(function() {
+        if ($(this).val() == Number($(this).val())) {
+            $('.disabledButton').attr('disabled', false);
+            $.ajax({
+                url: "/requestHeroDescription?id=" + $(this).val(),
+                method: "GET"
+            }).then(function(response) {
+                $('#displayHeroDescription').val(response);
+            })
+        }
+        console.log($(this));
+    })
+}
+
+f.removeHero = function () {
+    $('#removeOneHero').click(function() {
+        var id = $('#selectHero').val();
+        $.ajax({
+            url: "/deleteHero?id=" + id,
+            method: "POST"
+        })
+    })
+}
+
+$(document).ready(function() {
+    f.disableButtons();
+    f.removeHero();
+})

@@ -1,10 +1,14 @@
 package ro.academyplus.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import ro.academyplus.dto.HeroDTO;
 import ro.academyplus.model.Hero;
+import ro.academyplus.model.User;
 import ro.academyplus.repository.HeroRepository;
+import ro.academyplus.repository.UserRepository;
 
 import java.util.ArrayList;
 
@@ -17,6 +21,8 @@ public class HeroService {
 
     @Autowired
     HeroRepository heroRepository;
+    @Autowired
+    UserRepository userRepository;
 
 
     public ArrayList<Hero> listingHero(long userId) {
@@ -26,10 +32,29 @@ public class HeroService {
         return heroes;
     }
 
+    public String getHeroDescription(long id) {
+        Hero hero = heroRepository.findOneById(id);
+        return (hero.toString());
+    }
+
     public void updateHero(HeroDTO hero) {
         Hero theHero = heroRepository.findOneById(hero.getId());
-        theHero.setName(hero.getHeroName());
-        heroRepository.flush();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userRepository.findOneByEmail(auth.getName());
+        if (user.getId() == hero.getUserId()) {
+            theHero.setName(hero.getHeroName());
+            heroRepository.flush();
+        }
+    }
+
+    public void deleteHero(long heroId) {
+        Hero hero = heroRepository.findOneById(heroId);
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userRepository.findOneByEmail(auth.getName());
+        if (user.getId() == hero.getUserId()) {
+            heroRepository.delete(heroId);
+            heroRepository.flush();
+        }
     }
 
     public Hero addNewHero(HeroDTO hero) {

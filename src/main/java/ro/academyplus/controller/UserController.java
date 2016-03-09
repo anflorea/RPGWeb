@@ -5,15 +5,11 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import ro.academyplus.dto.HeroDTO;
 import ro.academyplus.model.Hero;
 import ro.academyplus.model.HeroType;
 import ro.academyplus.model.User;
-import ro.academyplus.repository.HeroRepository;
 import ro.academyplus.repository.UserRepository;
 import ro.academyplus.service.HeroService;
 
@@ -76,21 +72,20 @@ public class UserController {
         if (bindingResult.hasErrors()) {
             return "/selectHero";
         }
-        heroesOfUser.listingstatusHero(hero);
         heroesOfUser.updateHero(hero);
         //System.out.println(hero.getHeroName() + " id: " + hero.getId());
 
         return "redirect:selectHero";
     }
-//    @RequestMapping(value = "/deleteHero", method = RequestMethod.POST)
-//    public String deleteHero(@ModelAttribute(value = "hero") HeroDTO hero, BindingResult bindingResult) {
-//        String email = SecurityContextHolder.getContext().getAuthentication().getName();
-//        if (bindingResult.hasErrors()) {
-//            return "/selectHero";
-//        }
-//        heroesOfUser.deleteHero(hero);
-//        //System.out.println(hero.getHeroName() + " id: " + hero.getId());
-//
-//        return "redirect:selectHero";
-//    }
+
+    @RequestMapping(value = "/requestHeroDescription", method = RequestMethod.GET)
+    public @ResponseBody String giveHeroDescription(@RequestParam(value = "id") long heroId, Model model) {
+        return heroesOfUser.getHeroDescription(heroId);
+    }
+
+    @RequestMapping(value = "/deleteHero", method = RequestMethod.POST)
+    public String deleteTheHero(@RequestParam(value = "id") long heroId) {
+        heroesOfUser.deleteHero(heroId);
+        return "redirect:selectHero";
+    }
 }
