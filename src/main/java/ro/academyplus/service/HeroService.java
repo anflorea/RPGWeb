@@ -41,8 +41,11 @@ public class HeroService {
         Hero theHero = heroRepository.findOneById(hero.getId());
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userRepository.findOneByEmail(auth.getName());
-        if (user.getId() == hero.getUserId()) {
-            theHero.setName(hero.getHeroName());
+        if (user.getId() == theHero.getUserId()) {
+            if (hero.getHeroName().length() > 0)
+                theHero.setName(hero.getHeroName());
+            else
+                theHero.setName("Unnamed Hero");
             heroRepository.flush();
         }
     }

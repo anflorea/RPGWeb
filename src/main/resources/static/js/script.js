@@ -68,6 +68,8 @@ f.removeHero = function () {
         $.ajax({
             url: "/deleteHero?id=" + id,
             method: "POST"
+        }).then(function(response) {
+            window.location = window.location;
         })
     })
 }

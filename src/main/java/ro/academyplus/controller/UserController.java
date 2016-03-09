@@ -55,7 +55,7 @@ public class UserController {
     public String createHero(@ModelAttribute(value = "hero") @Valid HeroDTO hero, BindingResult bindingResult) {
         String email = SecurityContextHolder.getContext().getAuthentication().getName();
         if (bindingResult.hasErrors()) {
-            return "/selectHero";
+            return "redirect:selectHero";
         }
 
         User user = userRepository.findOneByEmail(email);
@@ -84,7 +84,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "/deleteHero", method = RequestMethod.POST)
-    public String deleteTheHero(@RequestParam(value = "id") long heroId) {
+    public @ResponseBody String deleteTheHero(@RequestParam(value = "id") long heroId) {
         heroesOfUser.deleteHero(heroId);
         return "redirect:selectHero";
     }
