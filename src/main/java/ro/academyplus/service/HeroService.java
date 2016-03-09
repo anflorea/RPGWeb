@@ -26,6 +26,12 @@ public class HeroService {
         return heroes;
     }
 
+    public void updateHero(HeroDTO hero) {
+        Hero theHero = heroRepository.findOneById(hero.getId());
+        theHero.setName(hero.getHeroName());
+        heroRepository.flush();
+    }
+
     public Hero addNewHero(HeroDTO hero) {
         Hero newHero = new Hero();
         newHero.setName(hero.getHeroName());

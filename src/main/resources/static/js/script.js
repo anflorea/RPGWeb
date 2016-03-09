@@ -24,3 +24,23 @@ function showLoginPane (isVisible) {
 		largeDiv.className = 'largeLoginPane';
 	}
 }
+
+function renameHeroFunction() {
+    var heroId = document.getElementById('selectHero');
+    var awsmInput = document.getElementById('identificationName');
+    var awsmInputName = document.getElementById('thisHeroName');
+    var id = heroId.options[heroId.selectedIndex].value;
+    var name = heroId.options[heroId.selectedIndex].text;
+
+    awsmInput.value = id;
+    name = name.split(" ");
+    var i = 0;
+    var newName = "";
+    while (i < name.length - 2) {
+        if (i > 0)
+            newName += " ";
+        newName += name[i];
+        i++;
+    }
+    awsmInputName.value = newName;
+}

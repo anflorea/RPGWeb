@@ -15,6 +15,15 @@ public class HeroDTO {
     @NotNull(message = "You must choose a value.")
     private HeroType type;
     private long userId;
+    private long id;
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 
     public long getUserId() {
         return userId;

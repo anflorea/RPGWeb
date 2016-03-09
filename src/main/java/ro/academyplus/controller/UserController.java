@@ -68,4 +68,16 @@ public class UserController {
 
         return "redirect:/selectHero";
     }
+
+    @RequestMapping(value = "/renameHero", method = RequestMethod.POST)
+    public String renameHero(@ModelAttribute(value = "hero") HeroDTO hero, BindingResult bindingResult) {
+        String email = SecurityContextHolder.getContext().getAuthentication().getName();
+        if (bindingResult.hasErrors()) {
+            return "/selectHero";
+        }
+        heroesOfUser.updateHero(hero);
+        //System.out.println(hero.getHeroName() + " id: " + hero.getId());
+
+        return "redirect:selectHero";
+    }
 }

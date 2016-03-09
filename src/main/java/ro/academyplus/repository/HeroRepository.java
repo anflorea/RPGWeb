@@ -13,7 +13,8 @@ import java.util.List;
 public interface HeroRepository extends JpaRepository<Hero,Long> {
 //    List<> findByBoo(String boo);
 
-    ArrayList<Hero> findByUserId(Long userId);
+    ArrayList<Hero> findByUserId(long userId);
+    Hero findOneById(long id);
 
 //    ArrayList<Hero> findBy();
 //    List<Hero> listOfHeroes = new ArrayList<Hero>();

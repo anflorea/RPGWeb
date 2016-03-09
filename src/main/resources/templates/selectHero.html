@@ -28,7 +28,10 @@
 							th:text="${hero.name} + ' the ' + ${hero.type}">Hero Name</option>
 				</select> <br />
 				<div class="container">
-				<button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">Create new Hero</button>
+					<button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">Create new Hero</button>
+					<button type="button" class="btn btn-default" onclick="javascript: renameHeroFunction()" data-toggle="modal" data-target="#renameHero">Rename hero</button>
+					<button type="button" class="btn btn-default">Remove hero</button>
+					<button type="button" class="btn btn-default">Start mission</button>
 				</div>
 			</form>
 		</div>
@@ -40,7 +43,7 @@
 
 			<!-- Modal content-->
 			<div class="modal-content">
-				<form action="/createHero" th:action="@{/createHero}" id="createFuckingHero" th:object="${hero}" method="post">
+				<form action="#" th:action="@{/createHero}" th:object="${hero}" method="post">
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal">&times;</button>
 						<h4 class="modal-title">Create a new Hero</h4>
@@ -56,7 +59,33 @@
 						</select>
 					</div>
 					<div class="modal-footer">
-						<button type="submit" for="createFuckingHero" class="btn btn-default">Create Hero</button>
+						<button type="submit" class="btn btn-default">Create Hero</button>
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					</div>
+				</form>
+			</div>
+		</div>
+
+	</div>
+
+	<!-- Modal -->
+	<div class="modal fade" id="renameHero" role="dialog">
+		<div class="modal-dialog">
+
+			<!-- Modal content-->
+			<div class="modal-content">
+				<form action="#" th:action="@{/renameHero}" th:object="${hero}" method="post">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h4 class="modal-title">Rename this hero:</h4>
+					</div>
+					<div class="modal-body">
+						<label for="thisHeroName">Name</label>
+						<input type="text" th:field="*{heroName}" class="form-control" id="thisHeroName" name="Heroname"/> <br/>
+						<input type="hidden" id="identificationName" th:field="*{id}" />
+					</div>
+					<div class="modal-footer">
+						<button type="submit" class="btn btn-default">Rename hero</button>
 						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 					</div>
 				</form>
