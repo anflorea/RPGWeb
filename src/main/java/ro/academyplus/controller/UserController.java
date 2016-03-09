@@ -13,6 +13,7 @@ import ro.academyplus.dto.HeroDTO;
 import ro.academyplus.model.Hero;
 import ro.academyplus.model.HeroType;
 import ro.academyplus.model.User;
+import ro.academyplus.repository.HeroRepository;
 import ro.academyplus.repository.UserRepository;
 import ro.academyplus.service.HeroService;
 
@@ -75,9 +76,21 @@ public class UserController {
         if (bindingResult.hasErrors()) {
             return "/selectHero";
         }
+        heroesOfUser.listingstatusHero(hero);
         heroesOfUser.updateHero(hero);
         //System.out.println(hero.getHeroName() + " id: " + hero.getId());
 
         return "redirect:selectHero";
     }
+//    @RequestMapping(value = "/deleteHero", method = RequestMethod.POST)
+//    public String deleteHero(@ModelAttribute(value = "hero") HeroDTO hero, BindingResult bindingResult) {
+//        String email = SecurityContextHolder.getContext().getAuthentication().getName();
+//        if (bindingResult.hasErrors()) {
+//            return "/selectHero";
+//        }
+//        heroesOfUser.deleteHero(hero);
+//        //System.out.println(hero.getHeroName() + " id: " + hero.getId());
+//
+//        return "redirect:selectHero";
+//    }
 }

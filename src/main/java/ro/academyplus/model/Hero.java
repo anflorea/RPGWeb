@@ -23,7 +23,7 @@ public class Hero implements Serializable{
 
     @Override
     public String toString() {
-        return ("ID: " + this.id + ", Name: " + this.name + ", type: " + this.type.toString());
+        return ("ID: " + this.id + "\nName: " + this.name + "\nType: " + this.type.toString() + "\nHealt: " + this.health + "\\"  + this.maxHealth + "\nDamage " + this.damage );
     }
 
     public String getName() {
