@@ -40,6 +40,11 @@ public class AwesomeController {
 
     @RequestMapping(value = "/register", method = RequestMethod.GET)
     public String getRegister(Model model) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (auth.getName().equalsIgnoreCase("anonymousUser"))
+            model.addAttribute("isAuth", false);
+        else
+            model.addAttribute("isAuth", true);
         UserDTO user = new UserDTO();
         model.addAttribute("user", user);
         return "register";

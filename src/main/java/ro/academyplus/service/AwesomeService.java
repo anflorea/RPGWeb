@@ -17,10 +17,6 @@ public class AwesomeService {
     @Autowired
     UserRepository userRepository;
 
-    public String formatName(String name) {
-        return "Mr." + name;
-    }
-
     public User registerUser(UserDTO userDTO) {
         User user = new User();
         user.setEmail(userDTO.getEmail());

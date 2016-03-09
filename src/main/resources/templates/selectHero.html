@@ -1,9 +1,11 @@
 <!--<html lang="en" xmlns:th="http://www.thymeleaf.org">-->
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous" />
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <link rel="stylesheet" type="text/css" href="css/style.css" />
 	<link rel="shortcut icon" href="img/icon.png" />
 	<link rel="icon" href="img/icon.png" />
@@ -13,78 +15,57 @@
 </head>
 
 <body>
+	<div th:include="fragments/header :: headerAll"></div>
 
-	<div class="menu-wrap" id="headWrap">
-		<nav class="menu">
-			<a href="/">
-				<img src="img/logo-academy.png" style="height:100%; margin-left:50px; padding-top:5px; float:left;"/>
-			</a>
-			<ul class="clearfix">
-				<li style = "float: right; margin-right: 120px;">
-					<a href="javascript: showLoginPane(true)" th:class="${isAuth} ? 'hiddenClass' : 'fuckingClass'">Login</a>
-					<a href="/logout" th:class="${isAuth} ? 'fuckingClass' : 'hiddenClass'">Logout</a>
-				</li>
-				<!--<li>-->
-					<!--<a href="facebook_general.html">Facebook <span class="arrow">&#9660;</span> </a> -->
-					<!--<ul class="sub-menu">-->
-						<!--<li class="rows2"><a href="facebook_general.html">Informații generale</a></li>-->
-						<!--<li><a href="facebook_istoric.html">Istoric</a></li>-->
-						<!--<li class="rows2"><a href="facebook_afaceri.html">Afacerile corporației</a></li>-->
-						<!--<li><a href="facebook_website.html">Website</a></li>-->
-						<!--<li><a href="facebook_impact.html">Impact</a></li>-->
-					<!--</ul>-->
-				<!--</li>-->
-			</ul>
-		</nav>
-	</div>
-
-	<div class="largeLoginPane" id="largeLoginPaneId">
-		<div class="loginPane" id="loginPaneId">
-
-			<div style="float: right; margin-right: -40px; margin-top: -45px;">
-				<a href = "javascript: showLoginPane(false)"> &#10006; </a>
-			</div>
-
-			<form class="form-horizontal" action="/login" method="post">
-				<div class="form-group">
-					<label for="inputEmail" class="col-sm-2 control-label">Email</label>
-					<div class="col-sm-10">
-						<input type="email" class="form-control" id="inputEmail" placeholder="Email" name="username" />
-					</div>
-				</div>
-				<div class="form-group">
-					<label for="inputPassword" class="col-sm-2 control-label">Password</label>
-					<div class="col-sm-10">
-						<input type="password" class="form-control" id="inputPassword" placeholder="Password" name="password" />
-					</div>
-				</div>
-				<div class="form-group">
-					<div class="col-sm-offset-2 col-sm-10">
-						<button type="submit" class="btn btn-default">Sign in</button>
-						<input type="button" onclick="location.href='/register'" style="margin-left: 10px; " value="Register" class="btn btn-default" />
-					</div>
-				</div>
-			</form>
-
-		</div>
-	</div>
-
+	<div th:include="fragments/login :: loginPopUp"></div>
 	<div id="divutz">
 		<div style="text-align: center;"><h2>Select your Hero</h2></div> <br />
+		<div style="width: 80%; margin-left: 10%; margin-top: 30px;">
+			<form class="form-group">
+				<select class="form-control" id="selectHero" name="selectHero" multiple="multiple">
+					<option th:each="hero : ${heroes}"
+							th:value="${hero.id}"
+							th:text="${hero.name} + ' the ' + ${hero.type}">Hero Name</option>
+				</select> <br />
+				<div class="container">
+				<button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">Create new Hero</button>
+				</div>
+			</form>
+		</div>
 
+	</div>
+	<!-- Modal -->
+	<div class="modal fade" id="myModal" role="dialog">
+		<div class="modal-dialog">
+
+			<!-- Modal content-->
+			<div class="modal-content">
+				<form action="/createHero" th:action="@{/createHero}" id="createFuckingHero" th:object="${hero}" method="post">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h4 class="modal-title">Create a new Hero</h4>
+					</div>
+					<div class="modal-body">
+						<label for="thisName">Name</label>
+						<input type="text" th:field="*{heroName}" class="form-control" id="thisName" name="Heroname"/> <br/>
+						<label for="thisType">Type</label>
+						<select class="form-control" th:field="*{type}" id="thisType" name="type">
+							<option th:each="typee : ${heroType}"
+									th:value="${typee}"
+									th:text="${typee}">Hero Type</option>
+						</select>
+					</div>
+					<div class="modal-footer">
+						<button type="submit" for="createFuckingHero" class="btn btn-default">Create Hero</button>
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					</div>
+				</form>
+			</div>
+		</div>
 
 	</div>
 
-	<div id="footWrap">
-		<p id="footP" style="float: left; margin-left: 30px;">
-			Copyright &copy; 2016
-		</p>
-		<p id="footP" style="float: right; margin-right: 150px;">
-			Academy+Plus
-		</p> 
-	</div>
-	<div id="largeImgPanel" onclick="hideMe(this);" >
-		<img id="largeImg" style="height: 100%; margin: 0; padding: 0;" />
-	</div>
+
+	<div th:include="fragments/footer :: footer"></div>
 </body>
 </html>

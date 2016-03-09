@@ -1,29 +1,20 @@
 package ro.academyplus.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import ro.academyplus.dto.UserDTO;
+import ro.academyplus.dto.HeroDTO;
 import ro.academyplus.model.Hero;
-import ro.academyplus.model.User;
 import ro.academyplus.repository.HeroRepository;
-import ro.academyplus.repository.UserRepository;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Bb on 3/8/2016.
  */
 @Service
-public class GettingHerosOfUser {
+public class HeroService {
 
 
-    @Autowired
-    UserRepository userRepository;
     @Autowired
     HeroRepository heroRepository;
 
@@ -32,8 +23,17 @@ public class GettingHerosOfUser {
 
         ArrayList<Hero> heroes = heroRepository.findByUserId(userId);
 
-        for (Hero i: heroes)
-            System.out.println(i);
         return heroes;
+    }
+
+    public Hero addNewHero(HeroDTO hero) {
+        Hero newHero = new Hero();
+        newHero.setName(hero.getHeroName());
+        newHero.setType(hero.getType());
+        newHero.setHealth(100);
+        newHero.setMaxHealth(100);
+        newHero.setDamage(10);
+        newHero.setUserId(hero.getUserId());
+        return heroRepository.save(newHero);
     }
 }

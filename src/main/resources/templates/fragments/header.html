@@ -1,0 +1,33 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title></title>
+</head>
+
+<body>
+<div th:fragment="headerAll">
+    <div class="menu-wrap" id="headWrap">
+        <nav class="menu">
+            <a href="/">
+                <img src="img/logo-academy.png" style="height:100%; margin-left:50px; padding-top:5px; float:left;"/>
+            </a>
+            <ul class="clearfix">
+                <li style = "float: right; margin-right: 120px;">
+                    <a href="javascript: showLoginPane(true)" th:class="${isAuth} ? 'hiddenClass' : 'fuckingClass'">Login</a>
+                    <a href="/logout" th:class="${isAuth} ? 'fuckingClass' : 'hiddenClass'">Logout</a>
+                </li>
+                <!--<li>-->
+                <!--<a href="facebook_general.html">Facebook <span class="arrow">&#9660;</span> </a> -->
+                <!--<ul class="sub-menu">-->
+                <!--<li class="rows2"><a href="facebook_general.html">Informații generale</a></li>-->
+                <!--<li><a href="facebook_istoric.html">Istoric</a></li>-->
+                <!--<li class="rows2"><a href="facebook_afaceri.html">Afacerile corporației</a></li>-->
+                <!--<li><a href="facebook_website.html">Website</a></li>-->
+                <!--<li><a href="facebook_impact.html">Impact</a></li>-->
+                <!--</ul>-->
+                <!--</li>-->
+            </ul>
+        </nav>
+    </div>
+</div>
+</body>
+</html>

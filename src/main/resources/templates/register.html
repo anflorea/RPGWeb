@@ -13,56 +13,9 @@
 </head>
 
 <body>
+	<div th:include="fragments/header :: headerAll"></div>
 
-	<div class="menu-wrap" id="headWrap">
-		<nav class="menu">
-			<a href="/">
-				<img src="img/logo-academy.png" style="height:100%; margin-left:50px; padding-top:5px; float:left;"/>
-			</a>
-			<ul class="clearfix">
-				<li style = "float: right; margin-right: 120px;"><a href="javascript: showLoginPane(true)" style = "line-height: 27px; font-size: 14px;">Login</a></li>
-				<!--<li>-->
-					<!--<a href="facebook_general.html">Facebook <span class="arrow">&#9660;</span> </a> -->
-					<!--<ul class="sub-menu">-->
-						<!--<li class="rows2"><a href="facebook_general.html">Informații generale</a></li>-->
-						<!--<li><a href="facebook_istoric.html">Istoric</a></li>-->
-						<!--<li class="rows2"><a href="facebook_afaceri.html">Afacerile corporației</a></li>-->
-						<!--<li><a href="facebook_website.html">Website</a></li>-->
-						<!--<li><a href="facebook_impact.html">Impact</a></li>-->
-					<!--</ul>-->
-				<!--</li>-->
-			</ul>
-		</nav>
-	</div>
-
-	<div class="largeLoginPane" id="largeLoginPaneId">
-		<div class="loginPane" id="loginPaneId">
-
-			<div style="float: right; margin-right: -40px; margin-top: -45px;">
-				<a href = "javascript: showLoginPane(false)"> &#10006; </a>
-			</div>
-			<form class="form-horizontal">
-				<div class="form-group">
-					<label for="inputEmail3" class="col-sm-2 control-label">Email</label>
-					<div class="col-sm-10">
-						<input type="email" class="form-control" id="inputEmail3" placeholder="Email" />
-					</div>
-				</div>
-				<div class="form-group">
-					<label for="inputPassword3" class="col-sm-2 control-label">Password</label>
-					<div class="col-sm-10">
-						<input type="password" class="form-control" id="inputPassword3" placeholder="Password" />
-					</div>
-				</div>
-				<div class="form-group">
-					<div class="col-sm-offset-2 col-sm-10">
-						<button type="submit" class="btn btn-default">Sign in</button>
-						<input type="button" onclick="location.href='/register'" style="margin-left: 10px; " value="Register" class="btn btn-default" />
-					</div>
-				</div>
-			</form>
-		</div>
-	</div>
+	<div th:include="fragments/login :: loginPopUp"></div>
 
 	<div id="divutz">
 		<div style="text-align: center;"><h1>Register and shit</h1></div> <br />
@@ -100,16 +53,6 @@
 		</div>
 	</div>
 
-	<div id="footWrap">
-		<p id="footP" style="float: left; margin-left: 30px;">
-			Copyright &copy; 2016
-		</p>
-		<p id="footP" style="float: right; margin-right: 150px;">
-			Academy+Plus
-		</p> 
-	</div>
-	<div id="largeImgPanel" onclick="hideMe(this);" >
-		<img id="largeImg" style="height: 100%; margin: 0; padding: 0;" />
-	</div>
+	<div th:include="fragments/footer :: footer"></div>
 </body>
 </html>
