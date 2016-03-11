@@ -18,6 +18,17 @@ public class MissionController {
     @RequestMapping(value = "/startMission", method = RequestMethod.GET)
     public String startMission(@RequestParam(value = "heroId") long HeroId, Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
+        int i, j;
+        int map[][] = new int[11][11];
+
+        for (i = 0; i < 11; i++)
+            for (j = 0; j < 11; j++)
+                map[i][j] = 0;
+        map[5][5] = 1;
+
+        model.addAttribute("map", map);
+
         if (auth.getName().equalsIgnoreCase("anonymousUser"))
             model.addAttribute("isAuth", false);
         else

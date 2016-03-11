@@ -19,7 +19,16 @@
 
     <div th:include="fragments/login :: loginPopUp"></div>
     <div id="divutz">
-
+        <div style="margin-left: 50%; transform: translate(-50%, 0);">
+            <table class="table" id="mapPlayTable">
+                <tr th:each="i : ${map}">
+                    <td th:each="j : ${i}"
+                        th:text="${j}"
+                        th:class="'theClass' + ${j}"></td>
+                </tr>
+            </table>
+        </div>
+        <button class="btn btn-default" id="showDuck" />
 
     </div>
     <div th:include="fragments/footer :: footer"></div>

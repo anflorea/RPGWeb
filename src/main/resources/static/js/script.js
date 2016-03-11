@@ -89,8 +89,13 @@ f.startMission = function() {
     })
 }
 
+f.showThatDuck = function() {
+    $('.theClass1').html('<img src="img/duck.gif" style="width: 15px; height: auto;"/>');
+}
+
 $(document).ready(function() {
     f.disableButtons();
     f.removeHero();
+    f.showThatDuck();
 //    f.startMission();
 })
