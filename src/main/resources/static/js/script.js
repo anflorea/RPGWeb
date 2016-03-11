@@ -51,6 +51,7 @@ f.disableButtons = function () {
     $('#selectHero').change(function() {
         if ($(this).val() == Number($(this).val())) {
             $('.disabledButton').attr('disabled', false);
+            $('#startMissionButton').attr('href', "/startMission?heroId=" + $(this).val())
             $.ajax({
                 url: "/requestHeroDescription?id=" + $(this).val(),
                 method: "GET"
@@ -58,7 +59,7 @@ f.disableButtons = function () {
                 $('#displayHeroDescription').val(response);
             })
         }
-        console.log($(this));
+        //console.log($(this));
     })
 }
 
@@ -67,9 +68,23 @@ f.removeHero = function () {
         var id = $('#selectHero').val();
         $.ajax({
             url: "/deleteHero?id=" + id,
-            method: "POST"
+            method: "DELETE"
         }).then(function(response) {
-            window.location = window.location;
+            $('#' + id).fadeOut(1000);
+            $('#displayHeroDescription').val("");
+            $('.disabledButton').attr('disabled', true);
+        })
+    })
+}
+
+f.startMission = function() {
+    $('#startMissionButton').click(function() {
+        var heroId = $('#selectHero').val();
+        $.ajax({
+            url: "/startMission?heroId=" + heroId,
+            method: "GET"
+        }).then(function(response) {
+            window.location = "/playMission";
         })
     })
 }
@@ -77,4 +92,5 @@ f.removeHero = function () {
 $(document).ready(function() {
     f.disableButtons();
     f.removeHero();
+//    f.startMission();
 })

@@ -25,13 +25,14 @@
 				<select class="form-control" id="selectHero" name="selectHero" multiple="multiple">
 					<option th:each="hero : ${heroes}"
 							th:value="${hero.id}"
-							th:text="${hero.name} + ' the ' + ${hero.type}">Hero Name</option>
+							th:text="${hero.name} + ' the ' + ${hero.type}"
+							th:id="${hero.id}">Hero Name</option>
 				</select> <br />
 				<div class="container">
 					<button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">Create new Hero</button>
 					<button type="button" class="btn btn-default disabledButton" disabled="disabled" onclick="javascript: renameHeroFunction()" data-toggle="modal" data-target="#renameHero">Rename hero</button>
 					<button type="button" class="btn btn-default disabledButton" id="removeOneHero" disabled="disabled">Remove hero</button>
-					<button type="button" class="btn btn-default disabledButton" disabled="disabled">Start mission</button>
+					<a type="button" class="btn btn-default disabledButton" href="#" id="startMissionButton" disabled="disabled">Start mission</a>
 				</div><br />
 				<textarea class="form-control" disabled="disabled" style="height: 160px; cursor: default;" id="displayHeroDescription"></textarea>
 			</form>

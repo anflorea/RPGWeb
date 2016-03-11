@@ -83,7 +83,7 @@ public class UserController {
         return heroesOfUser.getHeroDescription(heroId);
     }
 
-    @RequestMapping(value = "/deleteHero", method = RequestMethod.POST)
+    @RequestMapping(value = "/deleteHero", method = RequestMethod.DELETE)
     public @ResponseBody String deleteTheHero(@RequestParam(value = "id") long heroId) {
         heroesOfUser.deleteHero(heroId);
         return "redirect:selectHero";
