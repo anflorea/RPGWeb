@@ -11,15 +11,19 @@ import java.io.Serializable;
 @Entity
 @Table(name = "HEROES")
 public class Hero implements Serializable{
+
     private String name;
     private HeroType type;
     private int health;
     private int maxHealth;
     private int damage;
+    private int defense;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     private long userId;
+    private int level;
+    private int experience;
 
     @Override
     public String toString() {
@@ -81,4 +85,53 @@ public class Hero implements Serializable{
     public void setUserId(long userId) {
         this.userId = userId;
     }
+
+    public void setExperience(int experienceAmount) {
+        this.experience += experienceAmount;
+
+        if (this.experience > 100) {
+
+            int increasedLevel = this.experience / 100;
+            this.level += increasedLevel;
+            this.experience = this.experience % (100 * increasedLevel);
+
+            if (type.toString().equals("ORC")) {
+                this.health += increasedLevel * 10;
+                this.defense += increasedLevel * 5;
+                this.damage += increasedLevel * 15;
+
+            } else if (type.toString().equals("MAGE")) {
+                this.health += increasedLevel * 15;
+                this.defense += increasedLevel * 10;
+                this.damage += increasedLevel * 5;
+
+            } else if (type.toString().equals("PRIEST")) {
+                this.health += increasedLevel * 10;
+                this.defense += increasedLevel * 15;
+                this.damage += increasedLevel * 5;
+
+            } else if (type.toString().equals("KNIGHT")) {
+                this.health += increasedLevel * 5;
+                this.defense += increasedLevel * 15;
+                this.damage += increasedLevel * 10;
+            }
+        }
+    }
+
+    public int getExperience() {
+        return this.experience;
+    }
+
+    public int getLevel () {
+        return this.level;
+    }
+
+    public int getDefense() {
+        return this.defense;
+    }
+
+    public void setDefense () {
+        // don't forget to set defense
+    }
+
 }
