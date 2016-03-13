@@ -62,11 +62,7 @@ public class HeroService {
 
     public Hero addNewHero(HeroDTO hero) {
         Hero newHero = new Hero();
-        newHero.setName(hero.getHeroName());
-        newHero.setType(hero.getType());
-        newHero.setHealth(100);
-        newHero.setMaxHealth(100);
-        newHero.setDamage(10);
+        newHero.createHero(hero);
         newHero.setUserId(hero.getUserId());
         return heroRepository.save(newHero);
     }

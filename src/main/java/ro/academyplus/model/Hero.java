@@ -1,6 +1,10 @@
 package ro.academyplus.model;
 
 
+import ro.academyplus.dto.HeroDTO;
+import ro.academyplus.model.artifacts.Armor;
+import ro.academyplus.model.artifacts.Weapon;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -13,21 +17,33 @@ import java.io.Serializable;
 public class Hero implements Serializable{
 
     private String name;
-    private HeroType type;
+    private HeroType heroType;
     private int health;
     private int maxHealth;
     private int damage;
-    private int defense;
+    private int defense = 0;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     private long userId;
     private int level;
     private int experience;
+    private int armor = -1;
+    private int helmet = -1;
+    private int weapon = -1;
 
     @Override
     public String toString() {
-        return ("Name: " + this.name + "\nType: " + this.type.toString() + "\nHealth: " + this.health + "\\"  + this.maxHealth + "\nDamage " + this.damage );
+        return ("Name: " + this.name + "\nType: " + this.heroType.toString() + "\nHealth: " + this.health + "\\"  + this.maxHealth + "\nDamage " + this.damage );
+    }
+
+    public void createHero (HeroDTO heroDTO) {
+        setName(heroDTO.getHeroName());
+        setType(heroDTO.getType());
+        setMaxHealth();
+        setHealth();
+        setDamage();
+        this.level = 1;
     }
 
     public String getName() {
@@ -39,35 +55,50 @@ public class Hero implements Serializable{
     }
 
     public HeroType getType() {
-        return type;
+        return heroType;
     }
 
     public void setType(HeroType type) {
-        this.type = type;
+        this.heroType = type;
     }
 
     public int getHealth() {
         return health;
     }
 
-    public void setHealth(int health) {
-        this.health = health;
+    public void setHealth(){
+        this.health = maxHealth;
     }
 
     public int getMaxHealth() {
         return maxHealth;
     }
 
-    public void setMaxHealth(int maxHealth) {
-        this.maxHealth = maxHealth;
+    public void setMaxHealth() {
+        if (this.heroType.toString().equals("ORC"))
+            this.maxHealth = 120;
+        if (this.heroType.toString().equals("MAGE"))
+            this.maxHealth = 110;
+        if (this.heroType.toString().equals("KNIGHT"))
+            this.maxHealth = 100;
+        if (this.heroType.toString().equals("PRIEST"))
+            this.maxHealth = 130;
     }
 
     public int getDamage() {
         return damage;
     }
 
-    public void setDamage(int damage) {
-        this.damage = damage;
+    public void setDamage() {
+
+        if (heroType.toString().equals("ORC"))
+            this.damage = 20;
+        if (heroType.toString().equals("MAGE"))
+            this.damage = 10;
+        if (heroType.toString().equals("KNIGHT"))
+            this.damage = 20;
+        if (heroType.toString().equals("PRIEST"))
+            this.damage = 30;
     }
 
     public long getId() {
@@ -95,22 +126,22 @@ public class Hero implements Serializable{
             this.level += increasedLevel;
             this.experience = this.experience % (100 * increasedLevel);
 
-            if (type.toString().equals("ORC")) {
+            if (heroType.toString().equals("ORC")) {
                 this.health += increasedLevel * 10;
                 this.defense += increasedLevel * 5;
                 this.damage += increasedLevel * 15;
 
-            } else if (type.toString().equals("MAGE")) {
+            } else if (heroType.toString().equals("MAGE")) {
                 this.health += increasedLevel * 15;
                 this.defense += increasedLevel * 10;
                 this.damage += increasedLevel * 5;
 
-            } else if (type.toString().equals("PRIEST")) {
+            } else if (heroType.toString().equals("PRIEST")) {
                 this.health += increasedLevel * 10;
                 this.defense += increasedLevel * 15;
                 this.damage += increasedLevel * 5;
 
-            } else if (type.toString().equals("KNIGHT")) {
+            } else if (heroType.toString().equals("KNIGHT")) {
                 this.health += increasedLevel * 5;
                 this.defense += increasedLevel * 15;
                 this.damage += increasedLevel * 10;
@@ -131,7 +162,31 @@ public class Hero implements Serializable{
     }
 
     public void setDefense () {
-        // don't forget to set defense
+
+    }
+
+    public int getArmor() {
+        return this.armor;
+    }
+
+    public int getWeapon() {
+        return this.weapon;
+    }
+
+    public int getHelmet() {
+        return this.helmet;
+    }
+
+    public void setWeapon (int newWeapon) {
+        this.weapon = newWeapon;
+    }
+
+    public void setArmor (int newArmor) {
+        this.armor = newArmor;
+    }
+
+    public void setHelmet(int newHelmet) {
+        this.health = newHelmet;
     }
 
 }
