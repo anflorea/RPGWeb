@@ -17,7 +17,7 @@ import java.io.Serializable;
 public class Hero implements Serializable{
 
     private String name;
-    private HeroType heroType;
+    private HeroType type;
     private int health;
     private int maxHealth;
     private int damage;
@@ -34,7 +34,7 @@ public class Hero implements Serializable{
 
     @Override
     public String toString() {
-        return ("Name: " + this.name + "\nType: " + this.heroType.toString() + "\nHealth: " + this.health + "\\"  + this.maxHealth + "\nDamage " + this.damage );
+        return ("Name: " + this.name + "\nType: " + this.type.toString() + "\nHealth: " + this.health + "\\"  + this.maxHealth + "\nDamage " + this.damage );
     }
 
     public void createHero (HeroDTO heroDTO) {
@@ -55,11 +55,11 @@ public class Hero implements Serializable{
     }
 
     public HeroType getType() {
-        return heroType;
+        return type;
     }
 
     public void setType(HeroType type) {
-        this.heroType = type;
+        this.type = type;
     }
 
     public int getHealth() {
@@ -75,13 +75,13 @@ public class Hero implements Serializable{
     }
 
     public void setMaxHealth() {
-        if (this.heroType.toString().equals("ORC"))
+        if (this.type.toString().equals("ORC"))
             this.maxHealth = 120;
-        if (this.heroType.toString().equals("MAGE"))
+        if (this.type.toString().equals("MAGE"))
             this.maxHealth = 110;
-        if (this.heroType.toString().equals("KNIGHT"))
+        if (this.type.toString().equals("KNIGHT"))
             this.maxHealth = 100;
-        if (this.heroType.toString().equals("PRIEST"))
+        if (this.type.toString().equals("PRIEST"))
             this.maxHealth = 130;
     }
 
@@ -91,13 +91,13 @@ public class Hero implements Serializable{
 
     public void setDamage() {
 
-        if (heroType.toString().equals("ORC"))
+        if (type.toString().equals("ORC"))
             this.damage = 20;
-        if (heroType.toString().equals("MAGE"))
+        if (type.toString().equals("MAGE"))
             this.damage = 10;
-        if (heroType.toString().equals("KNIGHT"))
+        if (type.toString().equals("KNIGHT"))
             this.damage = 20;
-        if (heroType.toString().equals("PRIEST"))
+        if (type.toString().equals("PRIEST"))
             this.damage = 30;
     }
 
@@ -126,22 +126,22 @@ public class Hero implements Serializable{
             this.level += increasedLevel;
             this.experience = this.experience % (100 * increasedLevel);
 
-            if (heroType.toString().equals("ORC")) {
+            if (type.toString().equals("ORC")) {
                 this.health += increasedLevel * 10;
                 this.defense += increasedLevel * 5;
                 this.damage += increasedLevel * 15;
 
-            } else if (heroType.toString().equals("MAGE")) {
+            } else if (type.toString().equals("MAGE")) {
                 this.health += increasedLevel * 15;
                 this.defense += increasedLevel * 10;
                 this.damage += increasedLevel * 5;
 
-            } else if (heroType.toString().equals("PRIEST")) {
+            } else if (type.toString().equals("PRIEST")) {
                 this.health += increasedLevel * 10;
                 this.defense += increasedLevel * 15;
                 this.damage += increasedLevel * 5;
 
-            } else if (heroType.toString().equals("KNIGHT")) {
+            } else if (type.toString().equals("KNIGHT")) {
                 this.health += increasedLevel * 5;
                 this.defense += increasedLevel * 15;
                 this.damage += increasedLevel * 10;
