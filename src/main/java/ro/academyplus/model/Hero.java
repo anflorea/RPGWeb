@@ -2,9 +2,6 @@ package ro.academyplus.model;
 
 
 import ro.academyplus.dto.HeroDTO;
-import ro.academyplus.model.artifacts.Armor;
-import ro.academyplus.model.artifacts.Weapon;
-
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -83,6 +80,7 @@ public class Hero implements Serializable{
             this.maxHealth = 100;
         if (this.type.toString().equals("PRIEST"))
             this.maxHealth = 130;
+        maxHealth += defense;
     }
 
     public int getDamage() {

@@ -8,6 +8,7 @@ import javax.validation.constraints.Size;
 /**
  * Created by Flo on 08-Mar-16.
  */
+
 public class HeroDTO {
     @NotNull
     @Size(min = 3, max = 30, message = "Name size must be between 3 and 30 characters.")

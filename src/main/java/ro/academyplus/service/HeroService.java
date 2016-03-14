@@ -70,16 +70,17 @@ public class HeroService {
         newHero.setUserId(hero.getUserId());
         return heroRepository.save(newHero);
     }
+
     public void deleteHero(HeroDTO hero) {
         Hero theHero = heroRepository.findOneById(hero.getId());
         heroRepository.delete(theHero.getId());
         heroRepository.flush();
     }
+
     public String listingstatusHero(HeroDTO hero) {
         Hero theHero = heroRepository.findOneById(hero.getId());
         String  statusHero = theHero.toString();
         System.out.println(statusHero);
         return  (statusHero);
-
     }
 }

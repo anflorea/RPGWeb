@@ -10,6 +10,7 @@ import java.util.List;
 /**
  * Created by Bb on 3/8/2016.
  */
+
 public interface HeroRepository extends JpaRepository<Hero,Long> {
 //    List<> findByBoo(String boo);
 
