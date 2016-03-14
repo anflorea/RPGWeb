@@ -92,6 +92,7 @@ f.startMission = function() {
 f.showThatDuck = function() {
     $('.theClass1').html('<img src="img/duck.gif" style="width: 100%; height: auto;"/>');
     $('.theClass0').html('<img src="img/grass.png" style="width: 100%; height: auto;"/>');
+    $('.theClass2').html('<img src="img/beholder.gif" style="width: 100%; height:auto;"/>');
 }
 
 f.computeProgressBarPercentage = function() {

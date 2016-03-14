@@ -61,11 +61,10 @@ public class Artifacts {
 
     public void createArtifact(String name, ArtifactType type, int damage, int defense) {
 
-        Artifacts artifact = new Artifacts();
-        artifact.setName(name);
-        artifact.setArtifactType(type);
-        artifact.setDamage(damage);
-        artifact.setDefense(defense);
+        this.setName(name);
+        this.setArtifactType(type);
+        this.setDamage(damage);
+        this.setDefense(defense);
 
     }
 }

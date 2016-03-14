@@ -11,6 +11,8 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import ro.academyplus.dto.UserDTO;
 import ro.academyplus.model.User;
+import ro.academyplus.model.artifacts.Artifacts;
+import ro.academyplus.service.ArtifactsService;
 import ro.academyplus.service.AwesomeService;
 
 import javax.validation.Valid;
@@ -23,6 +25,8 @@ public class AwesomeController {
 
     @Autowired
     AwesomeService awesomeService;
+    @Autowired
+    ArtifactsService artifactsService;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String getIndex(@RequestParam(value = "failed", required = false, defaultValue = "") String failed, Model model) {
@@ -35,6 +39,7 @@ public class AwesomeController {
             model.addAttribute("isAuth", false);
         else
             model.addAttribute("isAuth", true);
+        artifactsService.initArtifactsInDataBase();
         return "index";
     }
 
