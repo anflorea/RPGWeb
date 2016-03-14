@@ -32,6 +32,10 @@ public class HeroService {
         return heroes;
     }
 
+    public Hero getHeroById(long heroId) {
+        return heroRepository.findOneById(heroId);
+    }
+
     public String getHeroDescription(long id) {
         Hero hero = heroRepository.findOneById(id);
         return (hero.toString());

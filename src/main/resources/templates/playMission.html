@@ -14,12 +14,64 @@
     <title>Awesome Game</title>
 </head>
 
-<body>
+<body onload="javascript: f.computeProgressBarPercentage()">
     <div th:include="fragments/header :: headerAll"></div>
 
     <div th:include="fragments/login :: loginPopUp"></div>
     <div id="divutz">
-        <div style="margin-left: 50%; transform: translate(-50%, 0);">
+        <div style="width: 90%; margin-left: 5%; height: 180px;">
+        <div id="moveHeroOnMap" class="moveHeroForm">
+            <div class="demMoveUpButton">
+                <div class="moveItButton">
+                </div>
+                <div class="moveItButton">
+                    <a class="btn btn-default" style="width: auto; height: auto; padding: 15px;"><span style="font-size: 20;" class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span></a>
+                </div>
+                <div class="moveItButton">
+                </div>
+            </div>
+            <div class="demMoveDownSidesButtons">
+                <div class="moveItButton">
+                    <a class="btn btn-default" style="width: auto; height: auto; padding: 15px;"><span style="font-size: 20;" class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span></a>
+                </div>
+                <div class="moveItButton">
+                    <a class="btn btn-default" style="width: auto; height: auto; padding: 15px;"><span style="font-size: 20;" class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span></a>
+                </div>
+                <div class="moveItButton">
+                    <a class="btn btn-default" style="width: auto; height: auto; padding: 15px;"><span style="font-size: 20;" class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span></a>
+                </div>
+            </div>
+        </div>
+            <div class="displayHeroOnPlay">
+                <div id="displayHeroStatsOnPlay">
+                    <div class="progress" style="width: 90%; margin-left: 5%; margin-top: 5%; position: relative;">
+                        <div class="progress-bar progress-bar-danger" role="progress-bar" id="currentHealthBar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
+                        </div>
+                        <p style="color: black; position: absolute; left: 0; right: 0; top: 0; text-align: center;"><b><label th:text="'Health (' + ${thisHero.health} + '/' + ${thisHero.maxHealth} + ')'" id="currentHealth">Health(80/100)</label></b></p>
+                    </div>
+                    <div class="progress" style="width: 90%; margin-left: 5%; margin-top: -3%; position: relative;">
+                        <div class="progress-bar" role="progress-bar" aria-valuenow="70" id="currentExperienceBar" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
+                        </div>
+                        <p style="color: black; position: absolute; left: 0; right: 0; top: 0; text-align: center;"><b><label th:text="'Level ' + ${thisHero.level} + ' (' + ${thisHero.experience} + '%)'" id="currentExperience">Level 1 (70%)</label></b></p>
+                    </div>
+                    <div id="displayDmgAndDef">
+                        <div id="displayDamage" style="float: left; margin-left: 5%; display: inline-block;">
+                            <img src="img/damage-icon.png" style="height: 100%;" title="Damage"/>
+                            <label th:text="${thisHero.damage}" id="currentDamage">15</label>
+                        </div>
+                        <div id="displayDefense" style="display: inline-block; margin-left: 15%;">
+                            <img src="img/defense-icon.png" style="height: 100%;" title="Defense" />
+                            <label th:text="${thisHero.defense}" id="currentDefense">0</label>
+                        </div>
+                    </div>
+                </div>
+                <div id="displayHeroNameOnPlay">
+                    <label th:text="${thisHero.name} + ' the ' + ${thisHero.type}" style="margin-left: 10%;">Hero the type</label>
+                    <img src="img/duck.gif" style="width: 70%; margin-left: 15%; margin-top: 10%;"/>
+                </div>
+            </div>
+        </div>
+        <div style="width: 90%; margin-left: 50%; transform: translate(-50%, 0); margin-top: 30px;">
             <table class="table" id="mapPlayTable">
                 <tr th:each="i : ${map}">
                     <td th:each="j : ${i}"
@@ -28,7 +80,6 @@
                 </tr>
             </table>
         </div>
-        <button class="btn btn-default" id="showDuck" />
 
     </div>
     <div th:include="fragments/footer :: footer"></div>

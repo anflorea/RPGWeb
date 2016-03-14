@@ -6,6 +6,74 @@
 	margin: 40px;
 }
 
+.demMoveUpButton {
+	width: 90%;
+	height: 30%;
+	margin-top: 10%;
+	margin-bottom: 4%;
+}
+
+.demMoveDownSidesButtons {
+	width: 90%;
+	height: 30%;
+}
+
+.moveItButton {
+	text-align: center;
+	top: 0;
+	font-size: 80;
+	color: black;
+	height: 100%;
+	display: inline-block;
+	width: 30%;
+	margin-left: 2px;
+}
+
+.moveHeroForm {
+    width: 25%;
+    height: 100%;
+    /*margin-left: 10%;*/
+    /*background-color: blue;*/
+    display: inline-block;
+    /*float: left;*/
+}
+
+#displayDmgAndDef {
+	margin-top: -2%;
+	width: 90%;
+	margin-left: 5%;
+	height: 15%;
+	/*background-color: red;*/
+}
+
+#displayHeroNameOnPlay {
+	margin-top: 2%;
+	margin-left: 5%;
+	width: 25%;
+	height: 86%;
+	float: left;
+	display: inline-block;
+	/*background-color: green;*/
+}
+
+#displayHeroStatsOnPlay {
+	margin-top: 2%;
+	margin-left: 5%;
+	width: 60%;
+	height: 86%;
+	/*background-color: pink;*/
+	display: inline-block;
+}
+
+.displayHeroOnPlay {
+	/*background-color: red;*/
+	display: inline-block;
+	width: 68%;
+	height: 100%;
+	float: left;
+	margin-left: 5%;
+}
+
 .fuckingClass {
     line-height: 27px;
     font-size: 14px;

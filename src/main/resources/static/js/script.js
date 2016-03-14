@@ -90,12 +90,24 @@ f.startMission = function() {
 }
 
 f.showThatDuck = function() {
-    $('.theClass1').html('<img src="img/duck.gif" style="width: 15px; height: auto;"/>');
+    $('.theClass1').html('<img src="img/duck.gif" style="width: 100%; height: auto;"/>');
+    $('.theClass0').html('<img src="img/grass.png" style="width: 100%; height: auto;"/>');
+}
+
+f.computeProgressBarPercentage = function() {
+    var a = $('#currentHealth').text();
+    var b = $('#currentExperience').text();
+    b = b.substr(b.indexOf('(') + 1, b.indexOf(')') - b.indexOf('(') - 1);
+    var a1 = a.substr(a.indexOf('(') + 1, a.indexOf('/') - a.indexOf('(') - 1);
+    var a2 = a.substr(a.indexOf('/') + 1, a.indexOf(')') - a.indexOf('/') - 1);
+    $('#currentHealthBar').width(100 * a1 / a2 + '%');
+    $('#currentExperienceBar').width(b);
 }
 
 $(document).ready(function() {
     f.disableButtons();
     f.removeHero();
     f.showThatDuck();
+    f.computeProgressBarPercentage();
 //    f.startMission();
 })
