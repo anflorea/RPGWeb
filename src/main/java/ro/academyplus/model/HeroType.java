@@ -5,4 +5,5 @@ package ro.academyplus.model;
  */
 public enum HeroType {
     MAGE, ORC, PRIEST, KNIGHT
+
 }

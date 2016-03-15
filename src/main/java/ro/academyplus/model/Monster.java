@@ -34,6 +34,7 @@ public class Monster {
         setDropedExperience();
 
     }
+
     public void randomtype(){
         Random random = new Random();
         int rnd = random.nextInt(3);
@@ -46,30 +47,29 @@ public class Monster {
         if (rnd == 3)
             this.type = MonsterType.NECROMANCER;
     }
-        public int getHealth() {
-            return health;
-        }
+    public int getHealth() {
+        return health;
+    }
 
-        public void setHealth(){
-            this.health = maxHealth;
-        }
+    public void setHealth(){
+        this.health = maxHealth;
+    }
 
-        public int getMaxHealth() {
-            return maxHealth;
-        }
+    public int getMaxHealth() {
+        return maxHealth;
+    }
 
-        public void setMaxHealth() {
-            if (this.type.toString().equals("GOBLIN"))
-                this.maxHealth = this.maxHealth + ((Integer)request.getAttribute("hero_level") * 15);
-            if (this.type.toString().equals("DARKMAGE"))
-                this.maxHealth = this.maxHealth + ((Integer)request.getAttribute("hero_level") * 6);
-            if (this.type.toString().equals("DEVIL"))
-                this.maxHealth = this.maxHealth + ((Integer)request.getAttribute("hero_level") * 12);
-            if (this.type.toString().equals("NECROMANCER"))
-                this.maxHealth = this.maxHealth + ((Integer)request.getAttribute("hero_level") * 8);
-        }
+    public void setMaxHealth() {
+        if (this.type.toString().equals("GOBLIN"))
+            this.maxHealth = this.maxHealth + ((Integer)request.getAttribute("hero_level") * 15);
+        if (this.type.toString().equals("DARKMAGE"))
+            this.maxHealth = this.maxHealth + ((Integer)request.getAttribute("hero_level") * 6);
+        if (this.type.toString().equals("DEVIL"))
+            this.maxHealth = this.maxHealth + ((Integer)request.getAttribute("hero_level") * 12);
+        if (this.type.toString().equals("NECROMANCER"))
+            this.maxHealth = this.maxHealth + ((Integer)request.getAttribute("hero_level") * 8);
+    }
     public void setDamage() {
-
         if (type.toString().equals("GOBLIN"))
             this.damage =  this.damage + ((Integer)request.getAttribute("hero_level") * 6);
         if (type.toString().equals("DARKMAGE"))
@@ -79,20 +79,23 @@ public class Monster {
         if (type.toString().equals("NECROMANCER"))
             this.damage =  this.damage + ((Integer)request.getAttribute("hero_level") * 12);
     }
+
     public int getDamage() {
         return damage;
     }
-        public void setDropedExperience() {
-            this.dropedExperience = this.getHealth() + this.getDamage();
-        }
 
-        public int getDropedExperience() {
-            return this.dropedExperience;
-        }
+    public void setDropedExperience() {
+        this.dropedExperience = this.getHealth() + this.getDamage();
+    }
 
-        public void setLevel () {
-            this.level = (Integer)request.getAttribute("hero_level");
-        }
+    public int getDropedExperience() {
+        return this.dropedExperience;
+    }
+
+    public void setLevel () {
+        this.level = (Integer)request.getAttribute("hero_level");
+    }
+
     public int getLevel () {
         return this.level;
     }

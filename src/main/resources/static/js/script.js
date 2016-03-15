@@ -107,62 +107,59 @@ f.computeProgressBarPercentage = function() {
 }
 
 f.moveTheHero = function() {
-    $('#buttonMoveUp').click(function() {
+    $('#buttonMoveUp').click(function () {
         $.ajax({
             url: "/moveHero?move=UP",
             method: "POST"
-        }).then(function(response) {
-            if (response == "OK")
-                window.location = "/playMission";
-            if (response == "BATTLE")
-                alert("You have encountered a monster");
-            if (response == "WIN") {
-                alert("You fucking WON, mate!");
-            }
+        }).then(function (response) {
+            f.alertmove(response)
         })
     })
-    $('#buttonMoveLeft').click(function() {
+    $('#buttonMoveLeft').click(function () {
         $.ajax({
             url: "/moveHero?move=LEFT",
             method: "POST"
-        }).then(function(response) {
-            if (response == "OK")
-                window.location = "/playMission";
-            if (response == "BATTLE")
-                alert("You have encountered a monster");
-            if (response == "WIN") {
-                alert("You fucking WON, mate!");
-            }
+        }).then(function (response) {
+            f.alertmove(response)
         })
     })
-    $('#buttonMoveDown').click(function() {
+    $('#buttonMoveDown').click(function () {
         $.ajax({
             url: "/moveHero?move=DOWN",
             method: "POST"
-        }).then(function(response) {
-            if (response == "OK")
-                window.location = "/playMission";
-            if (response == "BATTLE")
-                alert("You have encountered a monster");
-            if (response == "WIN") {
-                alert("You fucking WON, mate!");
-            }
+        }).then(function (response) {
+            f.alertmove(response)
         })
     })
-    $('#buttonMoveRight').click(function() {
+    $('#buttonMoveRight').click(function () {
         $.ajax({
             url: "/moveHero?move=RIGHT",
             method: "POST"
-        }).then(function(response) {
-            if (response == "OK")
-                window.location = "/playMission";
-            if (response == "BATTLE")
-                alert("You have encountered a monster");
-            if (response == "WIN") {
-                alert("You fucking WON, mate!");
-            }
+        }).then(function (response) {
+            f.alertmove(response)
         })
     })
+}
+
+f.alertmove = function (response){
+    if (response == "OK")
+        window.location = "/playMission";
+    if (response == "BATTLE") {
+        alert("You have encountered a monster");
+
+        //var a = $('#').text();
+        //    var b = $('#currentExperience').text();
+        //    b = b.substr(b.indexOf('(') + 1, b.indexOf(')') - b.indexOf('(') - 1);
+        //    var a1 = a.substr(a.indexOf('(') + 1, a.indexOf('/') - a.indexOf('(') - 1);
+        //    var a2 = a.substr(a.indexOf('/') + 1, a.indexOf(')') - a.indexOf('/') - 1);
+        //    $('#currentHealthBar').width(100 * a1 / a2 + '%');
+        //    $('#currentExperienceBar').width(b);
+        //}
+
+    }
+    if (response == "WIN") {
+        alert("You fucking WON, mate!");
+    }
 }
 
 $(document).ready(function() {
