@@ -37,7 +37,7 @@ public class Monster {
 
     public void randomtype(){
         Random random = new Random();
-        int rnd = random.nextInt(3);
+        int rnd = random.nextInt(4);
         if (rnd == 0)
             this.type = MonsterType.DARKMAGE;
         if (rnd == 1)
