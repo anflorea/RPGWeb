@@ -1,5 +1,6 @@
 package ro.academyplus.controller;
 
+import org.hibernate.metamodel.relational.state.ManyToOneRelationalState;
 import org.springframework.beans.factory.ObjectFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import ro.academyplus.model.Hero;
+import ro.academyplus.model.Monster;
 import ro.academyplus.service.HeroService;
 import ro.academyplus.service.MissionService;
 
@@ -77,6 +79,16 @@ public class MissionController {
     public @ResponseBody String moveTheHero(@RequestParam(value = "move") String move, HttpServletRequest request) {
 
         move = missionService.movetheHero(move);
+        System.out.println(move + "");
+        if (move.equals("MONSTER")) {
+
+            Hero hero = (Hero) request.getSession().getAttribute("thisHero");
+            Monster monster = new Monster();
+            monster.createMonster(hero.getLevel());
+            request.getSession().setAttribute("monster", monster);
+            return ("monster" + monster.toString());
+
+        }
 
         return move;
     }

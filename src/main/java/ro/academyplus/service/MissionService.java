@@ -67,7 +67,7 @@ public class MissionService {
             return("WIN");
 
         if (map[desired_x][desired_y] == 2) {
-            return("BATTLE");
+            return("MONSTER");
         }
 
         if (map[desired_x][desired_y] == 0) {

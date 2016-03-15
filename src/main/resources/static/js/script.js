@@ -144,19 +144,10 @@ f.moveTheHero = function() {
 f.alertmove = function (response){
     if (response == "OK")
         window.location = "/playMission";
-    if (response == "BATTLE") {
-        alert("You have encountered a monster");
-
-        //var a = $('#').text();
-        //    var b = $('#currentExperience').text();
-        //    b = b.substr(b.indexOf('(') + 1, b.indexOf(')') - b.indexOf('(') - 1);
-        //    var a1 = a.substr(a.indexOf('(') + 1, a.indexOf('/') - a.indexOf('(') - 1);
-        //    var a2 = a.substr(a.indexOf('/') + 1, a.indexOf(')') - a.indexOf('/') - 1);
-        //    $('#currentHealthBar').width(100 * a1 / a2 + '%');
-        //    $('#currentExperienceBar').width(b);
-        //}
-
+    if (response.substr(0,7) == "monster") {
+        alert("You have encountered a monster. " + response.substr(7,response.length) + "This monsta' is sehr dangerous!\nWanna fight it? ;)");
     }
+    console.log(response);
     if (response == "WIN") {
         alert("You fucking WON, mate!");
     }
