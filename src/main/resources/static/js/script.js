@@ -114,6 +114,8 @@ f.moveTheHero = function() {
         }).then(function(response) {
             if (response == "OK")
                 window.location = "/playMission";
+            if (response == "BATTLE")
+                alert("You have encountered a monster");
             if (response == "WIN") {
                 alert("You fucking WON, mate!");
             }
@@ -126,6 +128,8 @@ f.moveTheHero = function() {
         }).then(function(response) {
             if (response == "OK")
                 window.location = "/playMission";
+            if (response == "BATTLE")
+                alert("You have encountered a monster");
             if (response == "WIN") {
                 alert("You fucking WON, mate!");
             }
@@ -138,6 +142,8 @@ f.moveTheHero = function() {
         }).then(function(response) {
             if (response == "OK")
                 window.location = "/playMission";
+            if (response == "BATTLE")
+                alert("You have encountered a monster");
             if (response == "WIN") {
                 alert("You fucking WON, mate!");
             }
@@ -150,6 +156,8 @@ f.moveTheHero = function() {
         }).then(function(response) {
             if (response == "OK")
                 window.location = "/playMission";
+            if (response == "BATTLE")
+                alert("You have encountered a monster");
             if (response == "WIN") {
                 alert("You fucking WON, mate!");
             }

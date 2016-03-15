@@ -17,24 +17,70 @@ public class MissionService {
     @Autowired
     HttpServletRequest request;
 
-    public int[][] initMap(int heroLevel) {
+    public int[][] initMap(int mapSize) {
 
-        int mapSize;
         Random random = new Random();
         int numberOfMonsters = 0;
-
-        mapSize = getMapSize(heroLevel);
 
         int[][] map = new int[mapSize][mapSize];
 
         while (numberOfMonsters < mapSize) {
-            int i = random.nextInt(10);
-            int j = random.nextInt(10);
+            int i = random.nextInt(mapSize - 1);
+            int j = random.nextInt(mapSize - 1);
             map[i][j] = 2;
             numberOfMonsters++;
         }
 
         return (map);
+    }
+
+    public String movetheHero (String move) {
+
+        int hero_x = (Integer) request.getSession().getAttribute("hero_x");
+        int hero_y = (Integer) request.getSession().getAttribute("hero_y");
+        int desired_x = hero_x;
+        int desired_y = hero_y;
+        int mapSize = (Integer) request.getSession().getAttribute("mapSize");
+        int map[][] = (int[][]) request.getSession().getAttribute("map");
+
+        if (move.equals("UP")) {
+            desired_x = hero_x - 1;
+            desired_y = hero_y;
+        }
+
+        if (move.equals("DOWN")) {
+            desired_x = hero_x + 1;
+            desired_y = hero_y;
+        }
+
+        if (move.equals("LEFT")) {
+            desired_x = hero_x;
+            desired_y = hero_y - 1;
+        }
+
+        if (move.equals("RIGHT")) {
+            desired_x = hero_x;
+            desired_y = hero_y + 1;
+        }
+
+        if (desired_x < 0 || desired_x >= mapSize || desired_y < 0 || desired_y >= mapSize)
+            return("WIN");
+
+        if (map[desired_x][desired_y] == 2) {
+            return("BATTLE");
+        }
+
+        if (map[desired_x][desired_y] == 0) {
+            request.getSession().setAttribute("old_x", hero_x);
+            request.getSession().setAttribute("old_y", hero_y);
+            hero_x = desired_x;
+            hero_y = desired_y;
+            request.getSession().setAttribute("hero_x", hero_x);
+            request.getSession().setAttribute("hero_y", hero_y);
+            return ("OK");
+        }
+
+        return null;
     }
 
     public int getMapSize(int heroLevel) {
@@ -51,11 +97,5 @@ public class MissionService {
         return mapSize;
 
     }
-
-    public void insesrtInsation(String whatToDo, Hero hero) {
-        request.setAttribute(whatToDo, hero);
-    }
-
-
 
 }
