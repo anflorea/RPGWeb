@@ -82,9 +82,10 @@ f.startMission = function() {
         var heroId = $('#selectHero').val();
         $.ajax({
             url: "/startMission?heroId=" + heroId,
-            method: "GET"
+            method: "POST"
         }).then(function(response) {
-            window.location = "/playMission";
+            if (response == true)
+                window.location = "/playMission";
         })
     })
 }
@@ -105,10 +106,62 @@ f.computeProgressBarPercentage = function() {
     $('#currentExperienceBar').width(b);
 }
 
+f.moveTheHero = function() {
+    $('#buttonMoveUp').click(function() {
+        $.ajax({
+            url: "/moveHero?move=UP",
+            method: "POST"
+        }).then(function(response) {
+            if (response == "OK")
+                window.location = "/playMission";
+            if (response == "WIN") {
+                alert("You fucking WON, mate!");
+            }
+        })
+    })
+    $('#buttonMoveLeft').click(function() {
+        $.ajax({
+            url: "/moveHero?move=LEFT",
+            method: "POST"
+        }).then(function(response) {
+            if (response == "OK")
+                window.location = "/playMission";
+            if (response == "WIN") {
+                alert("You fucking WON, mate!");
+            }
+        })
+    })
+    $('#buttonMoveDown').click(function() {
+        $.ajax({
+            url: "/moveHero?move=DOWN",
+            method: "POST"
+        }).then(function(response) {
+            if (response == "OK")
+                window.location = "/playMission";
+            if (response == "WIN") {
+                alert("You fucking WON, mate!");
+            }
+        })
+    })
+    $('#buttonMoveRight').click(function() {
+        $.ajax({
+            url: "/moveHero?move=RIGHT",
+            method: "POST"
+        }).then(function(response) {
+            if (response == "OK")
+                window.location = "/playMission";
+            if (response == "WIN") {
+                alert("You fucking WON, mate!");
+            }
+        })
+    })
+}
+
 $(document).ready(function() {
     f.disableButtons();
     f.removeHero();
     f.showThatDuck();
     f.computeProgressBarPercentage();
-//    f.startMission();
+    f.startMission();
+    f.moveTheHero();
 })
