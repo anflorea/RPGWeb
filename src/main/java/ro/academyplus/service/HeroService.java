@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 import ro.academyplus.dto.HeroDTO;
 import ro.academyplus.model.Hero;
 import ro.academyplus.model.User;
+import ro.academyplus.model.artifacts.Artifacts;
+import ro.academyplus.repository.ArtifactRepository;
 import ro.academyplus.repository.HeroRepository;
 import ro.academyplus.repository.UserRepository;
 
@@ -23,7 +25,8 @@ public class HeroService {
     HeroRepository heroRepository;
     @Autowired
     UserRepository userRepository;
-
+    @Autowired
+    ArtifactRepository artifactRepository;
 
     public ArrayList<Hero> listingHero(long userId) {
 
@@ -38,7 +41,19 @@ public class HeroService {
 
     public String getHeroDescription(long id) {
         Hero hero = heroRepository.findOneById(id);
-        return (hero.toString());
+        String wep = "none";
+        String arm = "none";
+            if(hero.getWeapon() > -1)
+            {
+                Artifacts artifacts = artifactRepository.findOneById( hero.getWeapon());
+                wep = artifacts.getName();
+
+            }
+            if(hero.getArmor() > -1){
+                Artifacts artifacts = artifactRepository.findOneById( hero.getArmor());
+                arm = artifacts.getName();
+            }
+            return ("Name: " + hero.getName() + "\nType: " + hero.getType().toString() + "\nLevel: " +  hero.getLevel() + " ("  + hero.getExperience() + "%)\nHealth: " + hero.getHealth() + "\\"  + hero.getMaxHealth() + "\nDamage " + hero.getDamage() + "\nArmor: " + arm + "\nWeapon: " + wep );
     }
 
     public void updateHero(HeroDTO hero) {
