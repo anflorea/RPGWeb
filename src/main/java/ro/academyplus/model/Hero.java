@@ -134,7 +134,7 @@ public class Hero implements Serializable{
     public void setExperience(int experienceAmount) {
         this.experience += experienceAmount;
 
-        if (this.experience > 100) {
+        if (this.experience >= 100) {
 
             int increasedLevel = this.experience / 100;
             this.level += increasedLevel;

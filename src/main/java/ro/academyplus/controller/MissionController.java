@@ -18,6 +18,7 @@ import ro.academyplus.model.Monster;
 import ro.academyplus.service.HeroService;
 import ro.academyplus.service.MissionService;
 import javax.servlet.http.HttpServletRequest;
+import java.util.Random;
 
 /**
  * Created by Flo on 11-Mar-16.
@@ -110,4 +111,20 @@ public class MissionController {
 
         return result;
     }
+
+    @RequestMapping (value = "/runMonster", method = RequestMethod.POST)
+    public @ResponseBody String runMonster(Model model, HttpServletRequest request) {
+
+        String result = "";
+        Hero hero = (Hero) request.getSession().getAttribute("thisHero");
+        Monster monster = (Monster) request.getSession().getAttribute("monster");
+        Random random = new Random();
+        if ((random.nextInt() % 2) == 1)
+            result = "run";
+        else {
+            result = missionService.heroFightMonster(hero, monster);
+        }
+        return result;
+    }
+
 }

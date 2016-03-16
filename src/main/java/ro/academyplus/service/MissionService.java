@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import ro.academyplus.model.Hero;
 import ro.academyplus.model.Monster;
 import ro.academyplus.repository.HeroRepository;
+
 import javax.servlet.http.HttpServletRequest;
 import java.util.Random;
 
@@ -38,7 +39,7 @@ public class MissionService {
         return (map);
     }
 
-    public String movetheHero (String move) {
+    public String movetheHero(String move) {
 
         int hero_x = (Integer) request.getSession().getAttribute("hero_x");
         int hero_y = (Integer) request.getSession().getAttribute("hero_y");
@@ -68,10 +69,12 @@ public class MissionService {
         }
 
         if (desired_x < 0 || desired_x >= mapSize || desired_y < 0 || desired_y >= mapSize)
-            return("WIN");
+            return ("WIN");
 
         if (map[desired_x][desired_y] == 2) {
-            return("MONSTER");
+            request.getSession().setAttribute("desired_x", desired_x);
+            request.getSession().setAttribute("desired_y", desired_y);
+            return ("MONSTER");
         }
 
         if (map[desired_x][desired_y] == 0) {
@@ -127,18 +130,18 @@ public class MissionService {
         }
         if (status.equals("monsterDefeated")) {
             int hero_x = (Integer) request.getSession().getAttribute("hero_x");
-            int hero_y = (Integer) request.getSession().getAttribute("hero_x");
-
+            int hero_y = (Integer) request.getSession().getAttribute("hero_y");
             int map[][] = (int[][]) request.getSession().getAttribute("map");
             map[hero_x][hero_y] = 0;
-            request.getSession().setAttribute("msp", map);
-            hero_x = (Integer) request.getSession().getAttribute("desired_x");
-            hero_y = (Integer) request.getSession().getAttribute("desired_y");
+            int desired_x = (Integer) request.getSession().getAttribute("desired_x");
+            int desired_y = (Integer) request.getSession().getAttribute("desired_y");
+            request.getSession().setAttribute("map", map);
+            hero_x = desired_x;
+            hero_y = desired_y;
             request.getSession().setAttribute("hero_x", hero_x);
             request.getSession().setAttribute("hero_y", hero_y);
             hero.setExperience(monster.getDropedExperience());
-            request.getSession().setAttribute("hero_x", hero_x);
-            request.getSession().setAttribute("hero_y", hero_y);
+
 
 
         }

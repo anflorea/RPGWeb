@@ -93,7 +93,7 @@ f.startMission = function() {
 f.showThatDuck = function() {
     $('.theClass1').html('<img src="img/duck.gif" style="width: 100%; height: auto;"/>');
     $('.theClass0').html('<img src="img/grass.png" style="width: 100%; height: auto;"/>');
-    $('.theClass2').html('<img src="img/beholder.gif" style="width: 100%; height:auto;"/>');
+    $('.theClass2').html('<img src="img/grass.png" style="width: 100%; height:auto;"/>');
 }
 
 f.computeProgressBarPercentage = function() {
@@ -199,7 +199,7 @@ f.encounterHero = function() {
                 alert("You escaped from the monster");
             }
             else if (response == "monsterDefeated") {
-                alert("You couldn't escape from the monster, but you defeated it like a brawe warrior!");
+                alert("You couldn't escape from the monster, but you defeated it like a brave warrior!");
                 window.location = window.location;
             }
             else {
