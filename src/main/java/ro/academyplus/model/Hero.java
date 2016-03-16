@@ -128,26 +128,23 @@ public class Hero implements Serializable{
             this.experience = this.experience % (100 * increasedLevel);
 
             if (type.toString().equals("ORC")) {
-                this.health += increasedLevel * 10;
-                this.defense += increasedLevel * 5;
+                this.maxHealth += increasedLevel * 10;
                 this.damage += increasedLevel * 15;
 
             } else if (type.toString().equals("MAGE")) {
-                this.health += increasedLevel * 15;
-                this.defense += increasedLevel * 10;
+                this.maxHealth += increasedLevel * 15;
                 this.damage += increasedLevel * 5;
 
             } else if (type.toString().equals("PRIEST")) {
-                this.health += increasedLevel * 10;
-                this.defense += increasedLevel * 15;
+                this.maxHealth += increasedLevel * 10;
                 this.damage += increasedLevel * 5;
 
             } else if (type.toString().equals("KNIGHT")) {
-                this.health += increasedLevel * 5;
-                this.defense += increasedLevel * 15;
+                this.maxHealth += increasedLevel * 5;
                 this.damage += increasedLevel * 10;
             }
         }
+        setHealth();
     }
 
     public int getExperience() {
