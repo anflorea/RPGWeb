@@ -24,6 +24,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private DatabaseAuthenticationProvider authenticationProvider;
 
 
+
     @Override
     public void configure(WebSecurity web) throws Exception {
 
