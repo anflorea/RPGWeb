@@ -2,6 +2,7 @@ package ro.academyplus.service;
 
 import org.omg.CORBA.Object;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.integration.IntegrationAutoConfiguration;
 import org.springframework.stereotype.Service;
 import ro.academyplus.model.Hero;
 import ro.academyplus.model.Monster;
@@ -78,6 +79,8 @@ public class MissionService {
             request.getSession().setAttribute("old_y", hero_y);
             hero_x = desired_x;
             hero_y = desired_y;
+            request.getSession().setAttribute("desired_x", desired_x);
+            request.getSession().setAttribute("desired_y", desired_y);
             request.getSession().setAttribute("hero_x", hero_x);
             request.getSession().setAttribute("hero_y", hero_y);
             return ("OK");
@@ -116,12 +119,21 @@ public class MissionService {
             monster.setHealth(hero.getDamage());
             if (monster.getHealth() < 0)
                 status = "monsterDefeated";
-            hero.setHealth(monster.getDamage());
-            if (hero.getHealth() < 0 && monster.getHealth() > 0)
-                status = "heroDefeated";
+            if (monster.getHealth() > 0) {
+                hero.setHealth(monster.getDamage());
+                if (hero.getHealth() < 0 && monster.getHealth() > 0)
+                    status = "heroDefeated";
+            }
         }
-        if (status.equals("monsterDefeat"))
+        if (status.equals("monsterDefeat")) {
+            int hero_x = (Integer) request.getSession().getAttribute("hero_x");
+            int hero_y = (Integer) request.getSession().getAttribute("hero_x");
+
+            hero_x = (Integer) request.getSession().getAttribute("desired_x");
+            hero_y = (Integer) request.getSession().getAttribute("desired_y");
             hero.setExperience(monster.getDropedExperience());
+
+        }
         return status;
     }
 }

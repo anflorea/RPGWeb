@@ -78,6 +78,7 @@ public class Hero implements Serializable{
     public void setHealth(){
         this.health = maxHealth;
     }
+
     public void setHealth(int amount) {
         this.health -= amount;
     }
