@@ -2,6 +2,8 @@ package ro.academyplus.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import ro.academyplus.dto.HeroDTO;
+import ro.academyplus.model.Hero;
 import ro.academyplus.model.artifacts.ArtifactType;
 import ro.academyplus.model.artifacts.Artifacts;
 import ro.academyplus.repository.ArtifactRepository;
