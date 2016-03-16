@@ -55,6 +55,10 @@ public class Monster {
         this.health = maxHealth;
     }
 
+    public void setHealth (int amount) {
+        this.health -= amount;
+    }
+
     public int getMaxHealth() {
         return maxHealth;
     }

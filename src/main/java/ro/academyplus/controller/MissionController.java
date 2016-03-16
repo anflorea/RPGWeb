@@ -15,12 +15,12 @@ import ro.academyplus.model.Hero;
 import ro.academyplus.model.Monster;
 import ro.academyplus.service.HeroService;
 import ro.academyplus.service.MissionService;
-
 import javax.servlet.http.HttpServletRequest;
 
 /**
  * Created by Flo on 11-Mar-16.
  */
+
 @Controller
 public class MissionController {
 
@@ -87,9 +87,15 @@ public class MissionController {
             monster.createMonster(hero.getLevel());
             request.getSession().setAttribute("monster", monster);
             return ("monster" + monster.toString());
-
         }
-
         return move;
+    }
+
+    @RequestMapping(value ="/winLevel", method = RequestMethod.POST)
+    public String passTheLevel(Model model, HttpServletRequest request) {
+
+        Hero hero = (Hero) request.getSession().getAttribute("thisHero");
+        missionService.levelPass(hero);
+        return "selectHero";
     }
 }

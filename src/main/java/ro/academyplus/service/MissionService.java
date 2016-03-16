@@ -4,7 +4,8 @@ import org.omg.CORBA.Object;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ro.academyplus.model.Hero;
-
+import ro.academyplus.model.Monster;
+import ro.academyplus.repository.HeroRepository;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Random;
 
@@ -16,6 +17,8 @@ public class MissionService {
 
     @Autowired
     HttpServletRequest request;
+    @Autowired
+    HeroRepository heroRepository;
 
     public int[][] initMap(int mapSize) {
 
@@ -98,4 +101,21 @@ public class MissionService {
 
     }
 
+    public void levelPass(Hero hero) {
+
+        hero.setExperience(45);
+        heroRepository.flush();
+    }
+
+    public String heroFightMonster(Hero hero, Monster monster) {
+
+        while (hero.getHealth() > 0 && monster.getHealth() > 0) {
+            monster.setHealth(hero.getDamage());
+            hero.setHealth(monster.getDamage());
+        }
+        if (monster.getHealth() < 0)
+            return "monsterDefeated";
+        else
+            return "heroDefeated";
+    }
 }

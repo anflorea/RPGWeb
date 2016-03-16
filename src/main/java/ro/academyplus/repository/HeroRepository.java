@@ -17,6 +17,8 @@ public interface HeroRepository extends JpaRepository<Hero,Long> {
     ArrayList<Hero> findByUserId(long userId);
     Hero findOneById(long id);
 
+
+
 //    ArrayList<Hero> findBy();
 //    List<Hero> listOfHeroes = new ArrayList<Hero>();
 //    listOfHeroes = HeroRepository findAll();
