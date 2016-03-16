@@ -1,6 +1,8 @@
 package ro.academyplus.controller;
 
+import com.sun.org.apache.regexp.internal.RE;
 import org.hibernate.metamodel.relational.state.ManyToOneRelationalState;
+import org.omg.PortableServer.REQUEST_PROCESSING_POLICY_ID;
 import org.springframework.beans.factory.ObjectFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -93,10 +95,19 @@ public class MissionController {
 
     @RequestMapping(value ="/winLevel", method = RequestMethod.GET)
     public @ResponseBody String passTheLevel(Model model, HttpServletRequest request) {
-
         Hero hero = (Hero) request.getSession().getAttribute("thisHero");
         missionService.levelPass(hero);
         System.out.println(hero.getExperience());
         return "selectHero";
+    }
+
+    @RequestMapping (value ="/fightMonster", method = RequestMethod.POST)
+    public @ResponseBody String fightMonster(Model model, HttpServletRequest request) {
+
+        Hero hero = (Hero) request.getSession().getAttribute("thisHero");
+        Monster monster = (Monster) request.getSession().getAttribute("monster");
+        String result = missionService.heroFightMonster(hero, monster);
+
+        return result;
     }
 }

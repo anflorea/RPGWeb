@@ -120,6 +120,8 @@ public class MissionService {
             if (hero.getHealth() < 0 && monster.getHealth() > 0)
                 status = "heroDefeated";
         }
+        if (status.equals("monsterDefeat"))
+            hero.setExperience(monster.getDropedExperience());
         return status;
     }
 }
