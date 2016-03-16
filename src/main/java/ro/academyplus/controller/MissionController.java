@@ -118,13 +118,7 @@ public class MissionController {
         String result = "";
         Hero hero = (Hero) request.getSession().getAttribute("thisHero");
         Monster monster = (Monster) request.getSession().getAttribute("monster");
-        Random random = new Random();
-        if ((random.nextInt() % 2) == 1)
-            result = "run";
-        else {
-            result = missionService.heroFightMonster(hero, monster);
-        }
-        return result;
+        return result = missionService.runOrFightMonster(hero, monster);
     }
 
 }

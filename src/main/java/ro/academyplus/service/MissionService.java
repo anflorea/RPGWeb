@@ -141,10 +141,23 @@ public class MissionService {
             request.getSession().setAttribute("hero_x", hero_x);
             request.getSession().setAttribute("hero_y", hero_y);
             hero.setExperience(monster.getDropedExperience());
-
-
-
         }
         return status;
     }
+
+    public String runOrFightMonster(Hero hero, Monster monster) {
+        String result;
+        if (runOrFight())
+            result = "run";
+        else {
+            result = heroFightMonster(hero, monster);
+        }
+        return result;
+
+    }
+
+    private boolean runOrFight() {
+        return Math.random() < 0.7;
+    }
+
 }

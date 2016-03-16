@@ -197,6 +197,7 @@ f.encounterHero = function() {
         }).then(function(response) {
             if (response == "run") {
                 alert("You escaped from the monster");
+                window.location = "/playMission";
             }
             else if (response == "monsterDefeated") {
                 alert("You couldn't escape from the monster, but you defeated it like a brave warrior!");
