@@ -12,5 +12,6 @@ import java.util.ArrayList;
 public interface ArtifactRepository extends JpaRepository<Artifacts, Integer> {
 
     ArrayList<Artifacts> findAll();
+    Artifacts findOneById(long id);
 
 }
