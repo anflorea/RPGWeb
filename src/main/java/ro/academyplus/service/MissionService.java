@@ -103,19 +103,23 @@ public class MissionService {
 
     public void levelPass(Hero hero) {
 
-        hero.setExperience(45);
+        Hero newHero = heroRepository.findOneById(hero.getId());
+        newHero.setExperience(45);
         heroRepository.flush();
     }
 
     public String heroFightMonster(Hero hero, Monster monster) {
 
+        String status = "default";
+
         while (hero.getHealth() > 0 && monster.getHealth() > 0) {
             monster.setHealth(hero.getDamage());
+            if (monster.getHealth() < 0)
+                status = "monsterDefeated";
             hero.setHealth(monster.getDamage());
+            if (hero.getHealth() < 0 && monster.getHealth() > 0)
+                status = "heroDefeated";
         }
-        if (monster.getHealth() < 0)
-            return "monsterDefeated";
-        else
-            return "heroDefeated";
+        return status;
     }
 }
