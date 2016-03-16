@@ -141,6 +141,13 @@ public class MissionService {
             request.getSession().setAttribute("hero_x", hero_x);
             request.getSession().setAttribute("hero_y", hero_y);
             hero.setExperience(monster.getDropedExperience());
+///////////////////////////////////////////////////////////////////// last one
+            Hero thisHero = (Hero) request.getSession().getAttribute("thisHero");
+            Hero saveHero = heroRepository.findOneById(thisHero.getId());
+            saveHero.setExperience(monster.getDropedExperience());
+            heroRepository.flush();
+            request.getSession().setAttribute("thisHero", thisHero);
+            ///////////////////////////////////////////////////////////// last one
         }
         return status;
     }

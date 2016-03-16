@@ -98,7 +98,6 @@ public class MissionController {
     public @ResponseBody String passTheLevel(Model model, HttpServletRequest request) {
         Hero hero = (Hero) request.getSession().getAttribute("thisHero");
         missionService.levelPass(hero);
-        System.out.println(hero.getExperience());
         return "selectHero";
     }
 
