@@ -184,6 +184,28 @@ f.encounterHero = function() {
                 alert("You have defeated the monster! yaaay, Now go celebrate.");
                 window.location = window.location;
             }
+            else {
+                alert("You died :(");
+                window.location = "/selectHero";
+            }
+        })
+    })
+    $('#buttonRunMonster').click(function() {
+        $.ajax({
+            url: "/runMonster",
+            method: "POST"
+        }).then(function(response) {
+            if (response == "run") {
+                alert("You escaped from the monster");
+            }
+            else if (response == "monsterDefeated") {
+                alert("You couldn't escape from the monster, but you defeated it like a brawe warrior!");
+                window.location = window.location;
+            }
+            else {
+                alert("You couldn't escape from the monster, and you died :(");
+                window.location = "/selectHero";
+            }
         })
     })
 }
