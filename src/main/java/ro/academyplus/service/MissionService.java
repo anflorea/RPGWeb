@@ -125,13 +125,18 @@ public class MissionService {
                     status = "heroDefeated";
             }
         }
-        if (status.equals("monsterDefeat")) {
+        if (status.equals("monsterDefeated")) {
             int hero_x = (Integer) request.getSession().getAttribute("hero_x");
             int hero_y = (Integer) request.getSession().getAttribute("hero_x");
 
+            int map[][] = (int[][]) request.getSession().getAttribute("map");
+            map[hero_x][hero_y] = 0;
             hero_x = (Integer) request.getSession().getAttribute("desired_x");
             hero_y = (Integer) request.getSession().getAttribute("desired_y");
+            request.getSession().setAttribute("hero_x", hero_x);
+            request.getSession().setAttribute("hero_y", hero_y);
             hero.setExperience(monster.getDropedExperience());
+
 
         }
         return status;
