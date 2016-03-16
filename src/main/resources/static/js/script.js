@@ -148,7 +148,8 @@ f.alertmove = function(response) {
     if (response.substr(0,7) == "monster") {
         var txt;
 
-        $('#fightTheMonster').modal();
+        $('#fightTheMonsterLabel').text("You have encountered a monster. " + response.substr(7,response.length) + "This monsta' is sehr dangerous!\nWanna fight it? ;)");
+        $('#fightTheMonster').modal('show');
 
         //var r =  confirm("You have encountered a monster. " + response.substr(7,response.length) + "This monsta' is sehr dangerous!\nWanna fight it? ;)");
 //        if (r == true) {
@@ -172,6 +173,21 @@ f.alertmove = function(response) {
     }
 }
 
+f.encounterHero = function() {
+    $('#buttonFightMonster').click(function() {
+        $.ajax({
+            url: "/fightMonster",
+            method: "POST"
+        }).then(function(response) {
+            $('#fightTheMonster').modal('hide');
+            if (response == "monsterDefeated") {
+                alert("You have defeated the monster! yaaay, Now go celebrate.");
+                window.location = window.location;
+            }
+        })
+    })
+}
+
 $(document).ready(function() {
     f.disableButtons();
     f.removeHero();
@@ -179,4 +195,5 @@ $(document).ready(function() {
     f.computeProgressBarPercentage();
     f.startMission();
     f.moveTheHero();
+    f.encounterHero();
 })

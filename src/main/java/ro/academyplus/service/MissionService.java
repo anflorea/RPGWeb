@@ -131,11 +131,14 @@ public class MissionService {
 
             int map[][] = (int[][]) request.getSession().getAttribute("map");
             map[hero_x][hero_y] = 0;
+            request.getSession().setAttribute("msp", map);
             hero_x = (Integer) request.getSession().getAttribute("desired_x");
             hero_y = (Integer) request.getSession().getAttribute("desired_y");
             request.getSession().setAttribute("hero_x", hero_x);
             request.getSession().setAttribute("hero_y", hero_y);
             hero.setExperience(monster.getDropedExperience());
+            request.getSession().setAttribute("hero_x", hero_x);
+            request.getSession().setAttribute("hero_y", hero_y);
 
 
         }

@@ -32,16 +32,16 @@ public class Hero implements Serializable{
     private int helmet = -1;
     private int weapon = -1;
 
-    @Autowired
-    ArtifactRepository artifactRepository;
+//    @Autowired
+//    ArtifactRepository artifactRepository;
     @Override
     public String toString() {
         String wep = new String("none");
         String arm = new String("none");
-        if (this.weapon > -1)
-            wep = artifactRepository.findOneById((long) this.weapon).getName();
-        if (this.armor > -1)
-            arm = artifactRepository.findOneById((long) this.armor).getName();
+//        if (this.weapon > -1)
+//            wep = artifactRepository.findOneById((long) this.weapon).getName();
+//        if (this.armor > -1)
+//            arm = artifactRepository.findOneById((long) this.armor).getName();
 
         return ("Name: " + this.name + "\nType: " + this.type.toString() + "\nLevel: " + this.level + " ("  + this.experience + "%)\nHealth: " + this.health + "\\"  + this.maxHealth + "\nDamage " + this.damage + "\nArmor: " + arm + "\nWeapon: " + wep );
     }
