@@ -145,7 +145,16 @@ f.alertmove = function (response){
     if (response == "OK")
         window.location = "/playMission";
     if (response.substr(0,7) == "monster") {
-        alert("You have encountered a monster. " + response.substr(7,response.length) + "This monsta' is sehr dangerous!\nWanna fight it? ;)");
+        var txt;
+        var r =  confirm("You have encountered a monster. " + response.substr(7,response.length) + "This monsta' is sehr dangerous!\nWanna fight it? ;)");
+        if (r == true) {
+           alert("You chose to fight for saving the World!!!");
+        } else {
+           alert("Is not so bad to be a coward :-D")
+        }
+        //confirm("You have encountered a monster. " + response.substr(7,response.length) + "This monsta' is sehr dangerous!\nWanna fight it? ;)");
+
+
     }
     console.log(response);
     if (response == "WIN") {

@@ -23,7 +23,7 @@ public class Monster {
     HttpServletRequest request;
     @Override
     public String toString() {
-        return ("This is a " + this.type.toString() + " monsta', it has " + this.health + " health, and it can hurt you with " + this.damage + " damage. ");
+        return ("This is a " + this.type.toString() + " monsta' of level "+ this.level + ", it has a " + this.health + " health, and it can hurt you with " + this.damage + " damage. ");
     }
 
     public void createMonster (int heroLevel) {
@@ -37,7 +37,7 @@ public class Monster {
 
     public void randomtype(){
         Random random = new Random();
-        int rnd = random.nextInt(3);
+        int rnd = random.nextInt(4);
         if (rnd == 0)
             this.type = MonsterType.DARKMAGE;
         if (rnd == 1)
