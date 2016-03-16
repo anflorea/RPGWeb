@@ -91,11 +91,12 @@ public class MissionController {
         return move;
     }
 
-    @RequestMapping(value ="/winLevel", method = RequestMethod.POST)
-    public String passTheLevel(Model model, HttpServletRequest request) {
+    @RequestMapping(value ="/winLevel", method = RequestMethod.GET)
+    public @ResponseBody String passTheLevel(Model model, HttpServletRequest request) {
 
         Hero hero = (Hero) request.getSession().getAttribute("thisHero");
         missionService.levelPass(hero);
+        System.out.println(hero.getExperience());
         return "selectHero";
     }
 }

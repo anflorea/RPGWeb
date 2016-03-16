@@ -6,6 +6,11 @@
 	margin: 40px;
 }
 
+.disable-animation {
+    -webkit-transition: none !important;
+    transition: none !important;
+}
+
 .demMoveUpButton {
 	width: 90%;
 	height: 30%;

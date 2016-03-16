@@ -112,7 +112,7 @@ f.moveTheHero = function() {
             url: "/moveHero?move=UP",
             method: "POST"
         }).then(function (response) {
-            f.alertmove(response)
+            f.alertmove(response);
         })
     })
     $('#buttonMoveLeft').click(function () {
@@ -120,7 +120,7 @@ f.moveTheHero = function() {
             url: "/moveHero?move=LEFT",
             method: "POST"
         }).then(function (response) {
-            f.alertmove(response)
+            f.alertmove(response);
         })
     })
     $('#buttonMoveDown').click(function () {
@@ -128,7 +128,7 @@ f.moveTheHero = function() {
             url: "/moveHero?move=DOWN",
             method: "POST"
         }).then(function (response) {
-            f.alertmove(response)
+            f.alertmove(response);
         })
     })
     $('#buttonMoveRight').click(function () {
@@ -136,29 +136,39 @@ f.moveTheHero = function() {
             url: "/moveHero?move=RIGHT",
             method: "POST"
         }).then(function (response) {
-            f.alertmove(response)
+            f.alertmove(response);
         })
     })
 }
 
-f.alertmove = function (response){
+f.alertmove = function(response) {
+    console.log(response);
     if (response == "OK")
         window.location = "/playMission";
     if (response.substr(0,7) == "monster") {
         var txt;
-        var r =  confirm("You have encountered a monster. " + response.substr(7,response.length) + "This monsta' is sehr dangerous!\nWanna fight it? ;)");
-        if (r == true) {
-           alert("You chose to fight for saving the World!!!");
-        } else {
-           alert("Is not so bad to be a coward :-D")
-        }
-        //confirm("You have encountered a monster. " + response.substr(7,response.length) + "This monsta' is sehr dangerous!\nWanna fight it? ;)");
+
+        $('#fightTheMonster').modal();
+
+        //var r =  confirm("You have encountered a monster. " + response.substr(7,response.length) + "This monsta' is sehr dangerous!\nWanna fight it? ;)");
+//        if (r == true) {
+//           alert("You chose to fight for saving the World!!!");
+//        } else {
+//           alert("Is not so bad to be a coward :-D")
+//        }
+//        //confirm("You have encountered a monster. " + response.substr(7,response.length) + "This monsta' is sehr dangerous!\nWanna fight it? ;)");
 
 
     }
     console.log(response);
     if (response == "WIN") {
-        alert("You fucking WON, mate!");
+        alert("You fucking WON, m8!");
+        $.ajax({
+            url: "/winLevel",
+            method: "GET"
+        }).then(function(response) {
+            window.location = "/selectHero";
+        })
     }
 }
 

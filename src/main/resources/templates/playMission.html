@@ -45,12 +45,12 @@
             <div class="displayHeroOnPlay">
                 <div id="displayHeroStatsOnPlay">
                     <div class="progress" style="width: 90%; margin-left: 5%; margin-top: 5%; position: relative;">
-                        <div class="progress-bar progress-bar-danger" role="progress-bar" id="currentHealthBar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
+                        <div class="progress-bar progress-bar-danger disable-animation" role="progress-bar" id="currentHealthBar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
                         </div>
                         <p style="color: black; position: absolute; left: 0; right: 0; top: 0; text-align: center;"><b><label th:text="'Health (' + ${thisHero.health} + '/' + ${thisHero.maxHealth} + ')'" id="currentHealth">Health(80/100)</label></b></p>
                     </div>
                     <div class="progress" style="width: 90%; margin-left: 5%; margin-top: -3%; position: relative;">
-                        <div class="progress-bar" role="progress-bar" aria-valuenow="70" id="currentExperienceBar" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
+                        <div class="progress-bar disable-animation" role="progress-bar" aria-valuenow="70" id="currentExperienceBar" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
                         </div>
                         <p style="color: black; position: absolute; left: 0; right: 0; top: 0; text-align: center;"><b><label th:text="'Level ' + ${thisHero.level} + ' (' + ${thisHero.experience} + '%)'" id="currentExperience">Level 1 (70%)</label></b></p>
                     </div>
@@ -82,8 +82,32 @@
         </div>
 
     </div>
+    <!-- Modal -->
+    <div class="modal fade" id="fightTheMonster" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <form action="#" th:action="@{/createHero}" method="post">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">You've encountered a Monster</h4>
+                    </div>
+                    <div class="modal-body">
+                        <label id="fightTheMonsterLabel">Name</label>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-default">Create Hero</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
     <div th:include="fragments/footer :: footer"></div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.1/jquery.js" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 </body>
 </html>
