@@ -18,6 +18,7 @@ public class Monster {
     private int damage = 10;
     private int level;
     private int dropedExperience;
+    private int dropedArtifact;
 
     @Autowired
     HttpServletRequest request;
@@ -33,7 +34,10 @@ public class Monster {
         setHealth();
         setDamage(heroLevel);
         setDropedExperience();
+        setDropedArtifact();
     }
+
+
 
     public void randomtype(){
         Random random = new Random();
@@ -94,6 +98,19 @@ public class Monster {
 
     public int getDropedExperience() {
         return this.dropedExperience;
+    }
+    private void setDropedArtifact() {
+        Random random = new Random();
+        int rnd = random.nextInt(1);
+        int rnd2 = -1;
+        if (rnd == 1){
+            Random random2 = new Random();
+            int rnd3 = random2.nextInt(19);
+            this.dropedArtifact = rnd3;
+        }
+        else
+            this.dropedArtifact = rnd2;
+
     }
 
     public void setLevel (int heroLevel) {
